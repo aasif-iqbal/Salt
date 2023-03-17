@@ -1,0 +1,87 @@
+https://mysql.tutorials24x7.com/blog/guide-to-design-database-for-shopping-cart-in-mysql
+
+
+# Create invantorty management for stocks,price,discount and mrp (Edit-Add variation section) 
+
+# Create view that Admin can view all products in details and all variation also each color variation (use data-table for it)
+
+# create auto-discount system
+
+# management bag -
+- for minimum quantity (below 3 it gv notification  in view and also in admin)
+- user can add maximum 10 products
+- decrement(click) to minimum 1
+- check avilable quantity in database before  incrementing products each time.
+
+# Shipping details - --DONE
+ - address (should be editable)
+ - total items
+ - total price -> Pay now (using Razorpay checkout js)
+
+# add payment gateway(last)--DONE 
+- using Razorpay checkout.js
+https://razorpay.com/docs/payments/payment-gateway/web-integration/standard/build-integration/
+//blog for payment gateway
+https://www.codefixup.com/php-razorpay-payment-gateway/
+
+# Add COD(Cash On Delivery) option --DONE
+
+# js scroll libs
+- https://michalsnik.github.io/aos/
+- https://locomotivemtl.github.io/locomotive-scroll/
+
+# Add Dynamic Color section - to admin panel with color picker
+
+# add review and rating system after product purchase by customer
+
+# Add Shipping table for admin(maintain Shipping history related to payment and Shipping status)
+
+#how to create order table to maintain transaction for each product purchase by customer
+https://stackoverflow.com/questions/17711324/database-structure-for-customer-table-having-many-orders-per-customer-and-many
+
+https://fabric.inc/blog/shopping-cart-database-design/
+
+
+#animation
+https://codepen.io/coopergoeke/pen/xxVeXyJ
+
+https://codepen.io/toshiya-marukubo/details/mdPKpqM  -------- best one 
+=========
+insert and update two different table at one function
+
+
+======================================= BUGS ===========================================
+1.http://localhost/salt/cart
+# In Cart, if two white shirts of different size and color is added 
+  then, on deleting one shirt , all others shirt also deleted.
+
+=> solution: product have same product_uuid, also check card_id or create unique id for each card items.
+
+=========================
+
+// Assume you have already established a MySQL connection
+$json_string = '[{"user_uuid":"988f64b4-bc4a-11ed-bb06-98460a99789a","product_uuid":"c6b04c52-c256-11ed-bf9a-98460a99789a","product_name":"White T-Shirt","product_image":"0_4.jpg","product_quantity":"2","product_size_name":"M","product_color_name":"Yellow","product_selling_price":"1"}]';
+
+// Decode the JSON string to a PHP array
+$cart_items = json_decode($json_string, true);
+
+// Loop through the array to process each cart item
+foreach ($cart_items as $item) {
+    $user_uuid = $item['user_uuid'];
+    $product_uuid = $item['product_uuid'];
+    $product_name = $item['product_name'];
+    $product_image = $item['product_image'];
+    $product_quantity = $item['product_quantity'];
+    $product_size_name = $item['product_size_name'];
+    $product_color_name = $item['product_color_name'];
+    $product_selling_price = $item['product_selling_price'];
+
+    // Process the cart item as needed
+    // For example, you can insert it into a MySQL database:
+    $query = "INSERT INTO cart_items (user_uuid, product_uuid, product_name, product_image, product_quantity, product_size_name, product_color_name, product_selling_price) VALUES ('$user_uuid', '$product_uuid', '$product_name', '$product_image', '$product_quantity', '$product_size_name', '$product_color_name', '$product_selling_price')";
+    $result = mysqli_query($connection, $query);
+
+    if (!$result) {
+        echo "Error: " . mysqli_error($connection);
+    }
+}
