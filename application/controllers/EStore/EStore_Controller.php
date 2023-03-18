@@ -308,14 +308,18 @@ class EStore_Controller extends CI_Controller {
 	}
 //============================== End Add to Cart =======================================
 
-// ============================== Shipping_details ======================================
+// ================================= Shipping_details ======================================
 
 public function shippingDetails(){
 	
 	$data['nav_categories'] = $this->EStore_model->fetch_categories_for_parent();
 	$userLoginData = $this->session->userdata('userLoginData'); 
 	// print_r($userLoginData);
-	$user_uuid = $userLoginData['user_uuid'];
+	// if(isset($userLoginData)){
+		
+	// }
+
+	$user_uuid = $userLoginData['user_uuid'] ? $userLoginData['user_uuid']:'NULL';
 
 	$data['customerInfo'] = $this->EStore_model->getSingleCustomerInfo($user_uuid);
 	
@@ -379,9 +383,30 @@ public function cashOnDelivery_ajax()
 	$data['productInfo_json'] = $this->input->post('productInfo_json');
 	$data['user_uuid'] = $this->input->post('user_uuid');
 	$data['transaction_datetime'] = date('Y-m-d H:i:s');
+	$data['transaction_status'] = '1';
 
 	$status =  $this->EStore_model->saveCashOnDelivery($data);
-	echo json_encode($productInfo_json);
+	//After Payment is made, Info in send to order_shipping tbl
+	if($status){
+		$user_uuid = $data['user_uuid'];
+		$order_info = $this->EStore_model->fetchOrderInfoByUser($user_uuid);
+		
+		// print_r(count($order_info));		 
+			$shipping_data['order_uuid'] = $order_info[0]->order_uuid;
+			$shipping_data['user_uuid'] = $order_info[0]->user_uuid;
+			$shipping_data['product_json'] = $order_info[0]->productInfo_json;
+			$shipping_data['payment_mode'] = $order_info[0]->transaction_status;
+			$shipping_data['shipping_status'] = 0; //Pending
+			
+			$status2 = $this->EStore_model->saveShippingInfoByUser($shipping_data);		
+		
+		
+
+	}else{
+		echo json_encode("Not set");	
+	}
+	//if $status && $status2 is true
+	echo json_encode($status);
 }
 
 public function onlinePayment_ajax()

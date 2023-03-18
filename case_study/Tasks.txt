@@ -24,7 +24,10 @@ https://razorpay.com/docs/payments/payment-gateway/web-integration/standard/buil
 //blog for payment gateway
 https://www.codefixup.com/php-razorpay-payment-gateway/
 
-# Add COD(Cash On Delivery) option --DONE
+# Add COD(Cash On Delivery) option -- DONE
+use captcha 
+
+https://dev.to/movingmelody/build-a-captcha-code-generator-using-javascript-2ea6
 
 # js scroll libs
 - https://michalsnik.github.io/aos/
@@ -85,3 +88,13 @@ foreach ($cart_items as $item) {
         echo "Error: " . mysqli_error($connection);
     }
 }
+
+
+# In add to cart
+method 1:
+- after adding product to cart, it will not substract from total quantity store in stocks
+after customer will buy it then it substract from total stocks
+
+method 2:
+- after Add to cart, for 30min it will substract from total stocks(it will give 30 min time to 
+customer to purchase the item) then automatically(using trigger) it will back to total quantity.

@@ -86,6 +86,14 @@
                 </div>
             </li>
 
+            <!-- Shipping -->
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('show-shipping'); ?>">
+                <i class="fas fa-regular fa-truck"></i>
+                    <span>Shipping</span>
+                </a>
+            </li>
+
             <!-- Nav Item - Utilities Collapse Menu -->
             <!-- <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"

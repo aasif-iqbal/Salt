@@ -498,6 +498,33 @@ public function saveOnlinePayment($data)
         }         
 }
 
+public function fetchOrderInfoByUser($user_uuid)
+{
+    $query = "Select * FROM tbl_orders WHERE user_uuid = '{$user_uuid}'";
+
+    $q = $this->db->query($query);        
+
+        if ($q->num_rows() > 0) {
+            return $q->result();       
+        }   
+        else {
+            return NULL;
+        }  
+}
+
+public function saveShippingInfoByUser($shipping_data){
+    
+    $this->db->set('shipping_uuid','UUID()', FALSE);
+
+        if($shipping_data){            
+
+            $this->db->insert('tbl_shipping_orders', $shipping_data);                            
+            return TRUE;
+        }else{
+            $this->db->_error_message();
+            return FALSE;
+        }
+}
 
 //======================== product filter page =========================================
     public function getRecordCount($cat_slug, $color_flag, $price_flag, $discount_flag)

@@ -6,7 +6,7 @@
  */
 
 /**
- * Description of Staff_Model
+ * Description of Admin_Model
  *
  * @author asif
  */
@@ -263,6 +263,20 @@
 
         if ($q->num_rows() > 0) {
             return $q->result();       
+        }   
+        else {
+            return NULL;
+        }
+    }
+
+    public function showShippingInfo()
+    {
+        $query = "SELECT * FROM tbl_shipping_orders WHERE status='1'";
+
+        $q = $this->db->query($query);        
+
+        if ($q->num_rows() > 0) {
+            return $q->result_array();       
         }   
         else {
             return NULL;

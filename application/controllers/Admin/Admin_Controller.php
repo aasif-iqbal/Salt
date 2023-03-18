@@ -452,7 +452,25 @@ class Admin_Controller extends CI_Controller {
 		//redirect(base_url('add-variation/').$data['product_uuid']); 
 	}
 
+	public function show_shipping()
+	{
+		$data['shipping_info'] = $this->Admin_model->showShippingInfo();
 
+		$this->load->view('admin/header');	
+		$this->load->view('admin/side_nav');	
+		$this->load->view('admin/top_nav');
+		
+		// main-contain
+		$this->load->view('admin/show_shipping', $data);
+
+		$this->load->view('admin/footer');	
+	}
+
+	public function update_shipping_status()
+	{
+		$this->load->view('admin/header');	
+		$this->load->view('status');	
+	}
 /*
 	public function uploadVideos(){
         try{
