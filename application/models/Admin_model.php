@@ -283,5 +283,18 @@
         }
     }
 
+    public function checkForUpdateShipping($conformation_code)
+    {
+        if($conformation_code){    
+                $this->db->set('shipping_status', '1', FALSE);
+                $this->db->where('conformation_code', $conformation_code);        
+                $this->db->update('tbl_shipping_orders');
+            return TRUE;
+        }else{
+                echo "Error: " .  $this->db->_error_message();
+            return FALSE;
+        } 
+    }
+
 } //class-ends
 

@@ -101,4 +101,5 @@ $route['store-colored-image'] = 'Admin/Admin_Controller/store_colored_image';
 $route['show-shipping'] = 'Admin/Admin_Controller/show_shipping';
 
 //For delivery boy and Admin to confirm that parcel is received by customer
-$route['status'] = 'Admin/Admin_Controller/update_shipping_status';
+$route['status'] = 'Admin/Admin_Controller/show_shipping_status';
+$route['update-shipping'] = 'Admin/Admin_Controller/update_shipping_status';

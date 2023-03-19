@@ -466,11 +466,26 @@ class Admin_Controller extends CI_Controller {
 		$this->load->view('admin/footer');	
 	}
 
-	public function update_shipping_status()
+	public function show_shipping_status()
 	{
 		$this->load->view('admin/header');	
 		$this->load->view('status');	
 	}
+
+	public function update_shipping_status()
+	{
+		$conformation_code = $this->input->post('conformation_code');
+		
+		$updatedStatus = $this->Admin_model->checkForUpdateShipping($conformation_code);
+
+		if($updatedStatus == TRUE){
+			var_dump("Status_updated");die();
+		}else{
+			print_r('Not Status_updated');
+		}
+		
+	}
+
 /*
 	public function uploadVideos(){
         try{

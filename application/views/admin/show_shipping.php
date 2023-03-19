@@ -36,8 +36,9 @@
             if($row['shipping_status'] == 0){
                 $value = '<p style="background:red;color:white;">Pending</p>';
             }else{
-                $value = 'Shipped';
+                $value = '<p style="background:green;color:white;">Shipped</p>';
             }
+                                   
            $array = json_decode($row['product_json'], true);
     ?>
     <tr>
@@ -48,7 +49,7 @@
       <td><?= 'User_uuid:'.$array[0]['user_uuid']; ?></td>
       <td><?= $row['payment_status']; ?></td>
       <td><?= $value; ?></td>
-      <td> 58769 </td>
+      <td><?= $row['conformation_code']; ?></td>
       <td><?= $row['shipping_address']; ?></td>
       <td><?= $row['order_datetime']; ?></td>
       <td><?= $row['reciver_phone_no']; ?></td>      

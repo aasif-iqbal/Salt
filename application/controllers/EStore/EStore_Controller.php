@@ -384,6 +384,7 @@ public function cashOnDelivery_ajax()
 	$data['user_uuid'] = $this->input->post('user_uuid');
 	$data['transaction_datetime'] = date('Y-m-d H:i:s');
 	$data['transaction_status'] = '1';
+	$data['conformation_code'] = random_int(100, 100000);
 
 	$status =  $this->EStore_model->saveCashOnDelivery($data);
 	//After Payment is made, Info in send to order_shipping tbl
@@ -397,6 +398,7 @@ public function cashOnDelivery_ajax()
 			$shipping_data['product_json'] = $order_info[0]->productInfo_json;
 			$shipping_data['payment_mode'] = $order_info[0]->transaction_status;
 			$shipping_data['shipping_status'] = 0; //Pending
+			$shipping_data['conformation_code'] = $order_info[0]->conformation_code;
 			
 			$status2 = $this->EStore_model->saveShippingInfoByUser($shipping_data);		
 		
