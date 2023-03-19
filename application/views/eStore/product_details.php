@@ -316,6 +316,10 @@ echo html_entity_decode($peso);
     </div><!--col-md-12 row-->
     </div>
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script> -->
+    
+    <hr>
+    <h3>Rating & Reviews</h3>
+
     <script>
 
 function changeProductColor(color_id){

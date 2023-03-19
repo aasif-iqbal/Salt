@@ -52,6 +52,8 @@ https://codepen.io/toshiya-marukubo/details/mdPKpqM  -------- best one
 =========
 insert and update two different table at one function
 
+# Ratting and Review
+https://leetcode.com/discuss/interview-question/system-design/2019196/How-To-Design-User-Rating-and-Review-System-(Interview-question)
 
 ======================================= BUGS ===========================================
 1.http://localhost/salt/cart
@@ -98,3 +100,6 @@ after customer will buy it then it substract from total stocks
 method 2:
 - after Add to cart, for 30min it will substract from total stocks(it will give 30 min time to 
 customer to purchase the item) then automatically(using trigger) it will back to total quantity.
+
+
+https://www.furjaden.com/products/military-green-canvas-40l-travel-duffle-duff50
