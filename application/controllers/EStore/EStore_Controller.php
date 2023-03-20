@@ -437,6 +437,34 @@ public function thankYouPage()
 
 // ============================== End Shipping_details ==================================
 
+// ==============================
+
+public function saveRatings()
+{
+	$data['rating_title'] = $this->input->post('title');
+	$data['rating_number'] = $this->input->post('rating');
+	$data['product_uuid'] = $this->input->post('product_id');
+	// $data['rating_number'] = $this->input->post('product_id');
+	
+	$data['rating_comment'] = $this->input->post('comment');
+	
+
+	$status =  $this->EStore_model->saveUsersRatingNReviews($data);
+	echo json_encode($title);	 
+	// echo($title);die();
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 // ================================= Product-Details Page ==================================
 

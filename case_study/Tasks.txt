@@ -55,6 +55,12 @@ insert and update two different table at one function
 # Ratting and Review
 https://leetcode.com/discuss/interview-question/system-design/2019196/How-To-Design-User-Rating-and-Review-System-(Interview-question)
 
+https://phpzag.com/star-rating-system-with-ajax-php-and-mysql
+
+# add varified user (*)
+# one user can comment only one's
+
+
 ======================================= BUGS ===========================================
 1.http://localhost/salt/cart
 # In Cart, if two white shirts of different size and color is added 

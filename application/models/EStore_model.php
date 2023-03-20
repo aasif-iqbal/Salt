@@ -526,6 +526,20 @@ public function saveShippingInfoByUser($shipping_data){
         }
 }
 
+public function saveUsersRatingNReviews($rating_reviews_data){
+    
+    $this->db->set('rating_uuid','UUID()', FALSE);
+
+    if($rating_reviews_data){            
+        $this->db->insert('tbl_rating_reviews', $rating_reviews_data);                            
+        return TRUE;
+    }else{
+        $this->db->_error_message();
+        return FALSE;
+    }
+}
+
+
 //======================== product filter page =========================================
     public function getRecordCount($cat_slug, $color_flag, $price_flag, $discount_flag)
     {

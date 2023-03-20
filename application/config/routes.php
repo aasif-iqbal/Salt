@@ -79,6 +79,9 @@ $route['product/(:any)'] = 'EStore/EStore_Controller/showProductDetails/$1';
 
 $route['thanks']= 'EStore/EStore_Controller/thankYouPage';
 
+//Rating and reviews
+$route['save-ratings'] = 'EStore/EStore_Controller/saveRatings';
+
 // -------------------------- Admin-section --------------------------
 
 $route['admin'] = 'Admin/Admin_Controller';
@@ -103,3 +106,4 @@ $route['show-shipping'] = 'Admin/Admin_Controller/show_shipping';
 //For delivery boy and Admin to confirm that parcel is received by customer
 $route['status'] = 'Admin/Admin_Controller/show_shipping_status';
 $route['update-shipping'] = 'Admin/Admin_Controller/update_shipping_status';
+
