@@ -289,6 +289,12 @@
                 $this->db->set('shipping_status', '1', FALSE);
                 $this->db->where('conformation_code', $conformation_code);        
                 $this->db->update('tbl_shipping_orders');
+
+                // update table:tbl_mapping_orderedProducts_user
+                $this->db->set('shipping_status', '1', FALSE);
+                $this->db->where('delivery_confirm_code', $conformation_code);        
+                $this->db->update('tbl_mapping_orderedProducts_user');
+
             return TRUE;
         }else{
                 echo "Error: " .  $this->db->_error_message();

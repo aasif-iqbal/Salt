@@ -73,7 +73,7 @@
         //           FROM tbl_login WHERE phone_no='$login_data['phone_no']' AND password='$login_data['password']' ";
         
         $query = $this->db->select('*')->from('tbl_login')->where($login_data)->get();
-        $query2 = $this->db->select('user_uuid')->from('tbl_registration')->where($login_data)->get();
+        $query2 = $this->db->select('user_uuid,user_name')->from('tbl_registration')->where($login_data)->get();
 
         if ($query2->num_rows() > 0) {
             $result2 = $query2->result();       
@@ -85,7 +85,8 @@
             if(isset($result[0]->status))
             {
                 return $data = [
-                    'user_uuid' =>$result2[0]->user_uuid,
+                    'user_uuid' => $result2[0]->user_uuid,
+                    'user_name'=> $result2[0]->user_name,
                     'is_active'=> $result[0]->status,
                     'phone_no'=> $result[0]->phone_no,
                     'password'=> $result[0]->password,
@@ -500,7 +501,7 @@ public function saveOnlinePayment($data)
 
 public function fetchOrderInfoByUser($user_uuid)
 {
-    $query = "Select * FROM tbl_orders WHERE user_uuid = '{$user_uuid}'";
+    $query = "Select * FROM tbl_orders WHERE user_uuid = '{$user_uuid}' AND order_id=(SELECT LAST_INSERT_ID())";
 
     $q = $this->db->query($query);        
 
@@ -526,6 +527,17 @@ public function saveShippingInfoByUser($shipping_data){
         }
 }
 
+public function saveMappingData($mapping_data){
+    
+    if($mapping_data){            
+        $this->db->insert('tbl_mapping_orderedProducts_user', $mapping_data);                            
+        return TRUE;
+    }else{
+        $this->db->_error_message();
+        return FALSE;
+    }
+}
+
 public function saveUsersRatingNReviews($rating_reviews_data){
     
     $this->db->set('rating_uuid','UUID()', FALSE);
@@ -539,6 +551,49 @@ public function saveUsersRatingNReviews($rating_reviews_data){
     }
 }
 
+public function fetch_reviews_rating_for_product($product_uuid)
+{
+    $query = "Select * FROM tbl_rating_reviews WHERE product_uuid='{$product_uuid}'";
+
+            $q = $this->db->query($query);        
+
+            if ($q->num_rows() > 0) {
+                return $q->result_array();       
+            }   
+            else {
+                return NULL;
+            }   
+}
+
+public function fetchVerifiedBuyer($user_uuid, $product_uuid)
+{
+    $query = "Select shipping_status FROM tbl_mapping_orderedProducts_user 
+            WHERE user_uuid='{$user_uuid}' AND  product_uuid='{$product_uuid}'";
+
+    $q = $this->db->query($query);        
+
+    if ($q->num_rows() > 0) {
+        return $q->result_array();       
+    }   
+    else {
+        return NULL;
+    }    
+}
+
+public function fetch_product_rating_number($product_uuid)
+{
+    $query = "Select rating_number FROM tbl_rating_reviews 
+            WHERE product_uuid='{$product_uuid}'";
+
+    $q = $this->db->query($query);        
+
+    if ($q->num_rows() > 0) {
+        return $q->result_array();       
+    }   
+    else {
+        return NULL;
+    }    
+}
 
 //======================== product filter page =========================================
     public function getRecordCount($cat_slug, $color_flag, $price_flag, $discount_flag)

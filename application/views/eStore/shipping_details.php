@@ -183,7 +183,7 @@
                     },
                     success:function(data){
                         console.log('productInfo_json:',data);
-                        window.location.href = "<?= base_url('thanks');?>";
+                        //window.location.href = "<?= base_url('thanks');?>";
 
                     },
                     error: function(XMLHttpRequest, textStatus, errorThrown) { 

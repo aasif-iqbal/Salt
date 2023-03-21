@@ -72,7 +72,7 @@ figure:hover+span {
 
 <?php 
   $userLoginData = $this->session->userdata('userLoginData'); 
-  // print_r($userLoginData);
+  print_r($userLoginData);
 ?>
 
 <body class="bg-secondary text-dark bg-opacity-10">
@@ -320,12 +320,7 @@ echo html_entity_decode($peso);
     <hr>
     <h3>Rating & Reviews</h3>
 
-</?php
-
-global $connection;
-
-$ratingDetails = "SELECT ratingNumber FROM tbl_product_rating"; ratingNumber = [2,4,5,1,2,....]
-$rateResult = mysqli_query($connection, $ratingDetails) or die("database error:" . mysqli_error($connection));
+<?php
 
 $ratingNumber = 0;
 $count = 0;
@@ -336,24 +331,28 @@ $threeStarRating = 0;
 $twoStarRating = 0;
 $oneStarRating = 0;
 
-$rateResult = [2,4,5,1,2,....];
-
-while ($rate = mysqli_fetch_assoc($rateResult)) {
-
-	$ratingNumber += $rate['ratingNumber'];  //total ie(2+4+5+1+2+1...)
-	$count += 1;       // count(2+4+5+1+2+1) = 6 (6's time ie total no of ele)
-	if ($rate['ratingNumber'] == 5) { // 1
+// $rateResult = [2,4,5,1,2,....];
+// print_r($rateResult);
+// while ($rate = mysqli_fetch_assoc($rateResult)) {
+foreach($rateResult as $rate){
+	
+  $ratingNumber += $rate['rating_number'];  //total ie(2+4+5+1+2+1...)
+	
+  $count += 1;       // count(2+4+5+1+2+1) = 6 (6's time ie total no of ele)
+	
+  if ($rate['rating_number'] == 5) { // 1
 		$fiveStarRating += 1;  // count how many 5's  rating r there // 1 time's
-	} else if ($rate['ratingNumber'] == 4) { //1 time's
+	} else if ($rate['rating_number'] == 4) { //1 time's
 		$fourStarRating += 1;
-	} else if ($rate['ratingNumber'] == 3) { // 0 time's
+	} else if ($rate['rating_number'] == 3) { // 0 time's
 		$threeStarRating += 1;
-	} else if ($rate['ratingNumber'] == 2) { // 2 time's
+	} else if ($rate['rating_number'] == 2) { // 2 time's
 		$twoStarRating += 1;
-	} else if ($rate['ratingNumber'] == 1) { // 2 time's
+	} else if ($rate['rating_number'] == 1) { // 2 time's
 		$oneStarRating += 1;
 	}
 }
+
 $average = 0;
 
 if ($ratingNumber && $count) {
@@ -402,8 +401,15 @@ $oneStarRatingPercent = !empty($oneStarRatingPercent) ? $oneStarRatingPercent . 
 						<button type="button" class="btn btn-default btn-grey btn-sm rateButton" aria-label="Left Align">
 							<i class="fa fa-star" aria-hidden="true"></i></span>
 						</button>
-						<input type="hidden" class="form-control" id="rating" name="rating" value="1">
-						<input type="hidden" class="form-control" id="product_id" name="product_id" value="12345678">
+						
+            <input type="hidden" class="form-control" id="rating" name="rating" value="1">
+						                         
+            <input type="hidden" id="user_uuid" name="user_uuid" value="<?= isset($userLoginData['user_uuid'])?($userLoginData['user_uuid']):'None'; ?>" />
+
+            <input type="hidden" id="user_name" name="user_name"  value="<?= isset($userLoginData['user_name'])?($userLoginData['user_name']):'User'; ?>" />
+            
+            <input type="hidden" id="product_uuid" name="product_uuid" value="<?= $product_main[0]->product_uuid; ?>" name="<?= $product_main[0]->product_uuid; ?>" />
+
 					</div>
 					<div class="form-group">
 						<label for="usr">Title*</label>
@@ -434,12 +440,12 @@ $oneStarRatingPercent = !empty($oneStarRatingPercent) ? $oneStarRatingPercent . 
 			<div class="row no-gutters">
 				<div class="col-md-4 border-right">
 					<div class="ratings text-center p-4 py-5"> <span class="badge bg-success">
-              4 </?php printf('%.1f', $average);?>/ 5&nbsp;<i class="fa fa-star"></i>
+              <?php printf('%.1f', $average);?>/ 5&nbsp;<i class="fa fa-star"></i>
           </span>
 					 <span class="d-block about-rating">
-            </?php printf('%.1f', $average);?>
+            <?php printf('%.1f', $average);?>
              Rating & 
-             </?php echo ($count); ?>
+             <?php echo ($count); ?>
             &nbsp;Reviews
           </span>
 					</div>
@@ -450,42 +456,45 @@ $oneStarRatingPercent = !empty($oneStarRatingPercent) ? $oneStarRatingPercent . 
 						<div class="d-flex align-items-center"> <span class="stars"> <span>5 <i class="fa fa-star text-success"></i></span> </span>
 							<div class="col px-2">
 								<div class="progress" style="height: 5px;">
-									<div class="progress-bar bg-success" role="progressbar" style="width: </?php echo $fiveStarRatingPercent; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+									<div class="progress-bar bg-success" role="progressbar" style="width: <?php echo $fiveStarRatingPercent; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
 								</div>
 							</div> <span class="percent"> <span>
-								</?php echo $fiveStarRating; ?></span> </span>
+								<?php echo $fiveStarRating; ?></span> </span>
 							</div>
 							<div class="d-flex align-items-center"> <span class="stars"> <span>4 <i class="fa fa-star text-custom"></i></span> </span>
 								<div class="col px-2">
 									<div class="progress" style="height: 5px;">
-										<div class="progress-bar bg-custom" role="progressbar" style="width: </?php echo $fourStarRatingPercent; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+										<div class="progress-bar bg-custom" role="progressbar" style="width: <?php echo $fourStarRatingPercent; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
-								</div> <span class="percent"> <span></?php echo $fourStarRating; ?></span> </span>
+								</div> <span class="percent"> <span><?php echo $fourStarRating; ?></span> </span>
 							</div>
 							<div class="d-flex align-items-center"> <span class="stars"> <span>3 <i class="fa fa-star text-primary"></i></span> </span>
 								<div class="col px-2">
 									<div class="progress" style="height: 5px;">
-										<div class="progress-bar bg-primary" role="progressbar" style="width: </?php echo $threeStarRatingPercent; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+										<div class="progress-bar bg-primary" role="progressbar" style="width: <?php echo $threeStarRatingPercent; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
-								</div> <span class="percent"> <span></?php echo $threeStarRating; ?></span> </span>
+								</div> <span class="percent"> <span><?php echo $threeStarRating; ?></span> </span>
 							</div>
 							<div class="d-flex align-items-center"> <span class="stars"> <span>2 <i class="fa fa-star text-warning"></i></span> </span>
 								<div class="col px-2">
 									<div class="progress" style="height: 5px;">
 										<div class="progress-bar bg-warning" role="progressbar" style="width: 
-                    </?php echo $twoStarRatingPercent; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    <?php echo $twoStarRatingPercent; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
-								</div> <span class="percent"> <span></?php echo $twoStarRating; ?></span> </span>
+								</div> <span class="percent"> <span><?php echo $twoStarRating; ?></span> </span>
 							</div>
 							<div class="d-flex align-items-center"> <span class="stars"> <span>1 <i class="fa fa-star text-danger"></i></span> </span>
 								<div class="col px-2">
 									<div class="progress" style="height: 5px;">
-										<div class="progress-bar bg-danger" role="progressbar" style="width: </?php echo $oneStarRatingPercent; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+										<div class="progress-bar bg-danger" role="progressbar" style="width: <?php echo $oneStarRatingPercent; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
-								</div> <span class="percent"> <span></?php echo $oneStarRating; ?></span> </span>
+								</div> <span class="percent"> <span><?php echo $oneStarRating; ?></span> </span>
 							</div>
+
 						</div>
 					</div>
+          <!-- End Progress bar -->
+
 					<div class="col-md-4">
 						<div class="p-3 mt-2 border-left">
 							<h3>Review this product</h3>
@@ -504,18 +513,19 @@ $oneStarRatingPercent = !empty($oneStarRatingPercent) ? $oneStarRatingPercent . 
 				<div class="col-md-12">
 					<hr/>
 					<div class="review-block">
-						<?php
 
-// $ratinguery = "SELECT rating_id, product_id, user_id, ratingNumber, title, comments, created_at, modified_at FROM tbl_product_rating";
-// $ratingResult = mysqli_query($connection, $ratinguery) or die("database error:" . mysqli_error($connection));
 
-// while ($rating = mysqli_fetch_assoc($ratingResult)) {
-// 	$date = date_create($rating['created_at']);
-// 	$reviewDate = date_format($date, "M d, Y");
-	?>
+
+		 
+  <!-- <//?php print_r($rating_reviews);?> -->
+  <?php
+  if(isset($rating_reviews)){
+    foreach($rating_reviews as $rr):
+  
+  ?>
 							<div class="row">
 								<div class="col-sm-2">
-									<img src="image/default-user.jpg" class="img-rounded" height="50" width="55">
+									<img src="<?= base_url('assets/img/user.png'); ?>" class="img-rounded" height="50" width="55">
 									<div class="review-block-name">By <a href="#">User</a></div>
 									<div class="review-block-date">
                     <!-- </?php echo $reviewDate; ?> -->
@@ -524,26 +534,38 @@ $oneStarRatingPercent = !empty($oneStarRatingPercent) ? $oneStarRatingPercent . 
 
 								<div class="col-sm-9">
 									<div class="review-block-rate">
-										<?php
-// for ($i = 1; $i <= 5; $i++) {
-// 		$ratingClass = "btn-default btn-grey";
-// 		if ($i <= $rating['ratingNumber']) {
-// 			$ratingClass = "btn-default";
-// 		}
+                  <div class="review-block-title">
 
-		?>
-											<button type="button" class="btn btn-xs
-                         </?php echo $ratingClass; ?>" aria-label="Left Align">
+                    <?php 
+                    if($rr['user_name'] !== 'User'){
+                    echo $rr['user_name']; ?>&nbsp;&nbsp;&nbsp;<small class='text-muted'>verified <img src="<?= base_url('assets/img/icons8-verified-badge-16.png'); ?>"/></small>
+                    <?php } else {?>
+                      <?php echo $rr['user_name']; ?>
+                      <?php }?>
+                  </div>
+										<?php
+                    for ($i = 1; $i <= 5; $i++) {
+                        $ratingClass = "btn-default btn-success";
+                        if ($i <= $rr['rating_number']) {
+                          $ratingClass = "btn-default btn-dark";
+                        }
+
+                        ?>
+											<button type="button" class="btn btn-xs<?php echo $ratingClass; ?>" aria-label="Left Align">
 												<span><i class="fa fa-star" aria-hidden="true"></i></span>
 											</button>
-										<?php //} //end-of-for?>
+										<?php } //end-of-for?>
 									</div>
-									<div class="review-block-title"></?php echo $rating['title']; ?></div>
-									<div class="review-block-description"></?php echo $rating['comments']; ?></div>
+									<div class="review-block-title"><?php echo $rr['rating_title']; ?></div>
+									<div class="review-block-description"><?php echo $rr['rating_comment']; ?></div>
+                  <small class='text-muted'>Reviewed on: <?php 
+                  $date = date_create($rr['createdAt']);
+                  echo date_format($date,"d F Y");
+                  ?></small>
 								</div>
 							</div>
 							<hr/>
-						<!-- </?php } //end-of-while?> -->
+						<?php endforeach; } //end-of-foreach?>
 					</div>
 				</div>
 			</div><!--row-->
@@ -638,21 +660,6 @@ function changeProductColor(color_id){
                 }
     });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
       //============ bag item count ========================
       // var item_count__ = JSON.parse(localStorage.getItem('item_count'));

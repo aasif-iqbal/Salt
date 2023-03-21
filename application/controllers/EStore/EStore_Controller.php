@@ -62,7 +62,7 @@ class EStore_Controller extends CI_Controller {
 		if(isset($login_data) && !empty($login_data)){
 
 			$isValid = $this->EStore_model->fetchLoginDetails($login_data);
-
+// var_dump($isValid);die();
 			if($isValid != NUll && $login_data['phone_no'] === $isValid['phone_no'] 
 				&& $login_data['password'] === $isValid['password']){
 					
@@ -150,6 +150,11 @@ class EStore_Controller extends CI_Controller {
 		$data['nav_categories'] = $this->EStore_model->fetch_categories_for_parent();		
 		
 		$data['item_count'] = $this->session->userdata('item_count');			
+		
+		//Ratings and Reviews
+		$data['rating_reviews'] = $this->EStore_model->fetch_reviews_rating_for_product($product_uuid);		
+		
+		$data['rateResult'] = $this->EStore_model->fetch_product_rating_number($product_uuid);
 
 		$this->load->view('eStore/libs');
 		$this->load->view('eStore/nav', $data);
@@ -394,6 +399,7 @@ public function cashOnDelivery_ajax()
 	//After Payment is made, Info in send to order_shipping tbl
 	if($status){
 		$user_uuid = $data['user_uuid'];
+		//get last inserted id
 		$order_info = $this->EStore_model->fetchOrderInfoByUser($user_uuid);
 		
 		// print_r(count($order_info));		 
@@ -405,9 +411,25 @@ public function cashOnDelivery_ajax()
 			$shipping_data['conformation_code'] = $data['conformation_code'];
 			
 			$status2 = $this->EStore_model->saveShippingInfoByUser($shipping_data);		
-		
-		
 
+		// Mapping all shipping-product with user_uuid
+		$json_string = $order_info[0]->productInfo_json;
+		// Decode the JSON string to a PHP array
+		$cart_items = json_decode($json_string, true);
+
+		// Loop through the array to process each cart item
+		foreach ($cart_items as $item) {
+			
+			$mapping_data['user_uuid'] = $item['user_uuid'];
+			$mapping_data['product_uuid'] = $item['product_uuid'];
+			$mapping_data['product_name'] = $item['product_name'];			
+			$mapping_data['shipping_status'] = $shipping_data['shipping_status'];
+			$mapping_data['delivery_confirm_code'] = $shipping_data['conformation_code'];
+			
+
+			$this->EStore_model->saveMappingData($mapping_data);
+		}
+		// die();
 	}else{
 		echo json_encode("Not set");	
 	}
@@ -441,16 +463,28 @@ public function thankYouPage()
 
 public function saveRatings()
 {
-	$data['rating_title'] = $this->input->post('title');
+	
+	$data['rating_title']  = $this->input->post('title');
 	$data['rating_number'] = $this->input->post('rating');
-	$data['product_uuid'] = $this->input->post('product_id');
-	// $data['rating_number'] = $this->input->post('product_id');
+	$data['product_uuid']  = $this->input->post('product_uuid');
+	$data['user_uuid'] 	   = $this->input->post('user_uuid');
+	$data['user_name']     = $this->input->post('user_name');
 	
 	$data['rating_comment'] = $this->input->post('comment');
 	
+	// isVerifiedBuyer	- ie he/she purchased item
+	$verifiedBuyer = $this->EStore_model->fetchVerifiedBuyer($data['user_uuid'],$data['product_uuid']);
+	
+	if($verifiedBuyer[0]['shipping_status'] == '1')
+	{
+		$data['isVerifiedBuyer'] = '1';
+		// print_r($verifiedBuyer[0]['shipping_status']);die();
+	}else{
+		$data['isVerifiedBuyer'] = '0';
+	}
 
 	$status =  $this->EStore_model->saveUsersRatingNReviews($data);
-	echo json_encode($title);	 
+	echo json_encode($status);	 
 	// echo($title);die();
 }
 
