@@ -18,13 +18,13 @@ https://mysql.tutorials24x7.com/blog/guide-to-design-database-for-shopping-cart-
  - total items
  - total price -> Pay now (using Razorpay checkout js)
 
-# add payment gateway(last)--DONE 
+# add payment gateway(last)-- [DONE] 
 - using Razorpay checkout.js
 https://razorpay.com/docs/payments/payment-gateway/web-integration/standard/build-integration/
 //blog for payment gateway
 https://www.codefixup.com/php-razorpay-payment-gateway/
 
-# Add COD(Cash On Delivery) option -- DONE
+# Add COD(Cash On Delivery) option -- [DONE]
 use captcha 
 
 https://dev.to/movingmelody/build-a-captcha-code-generator-using-javascript-2ea6
@@ -35,7 +35,7 @@ https://dev.to/movingmelody/build-a-captcha-code-generator-using-javascript-2ea6
 
 # Add Dynamic Color section - to admin panel with color picker
 
-# add review and rating system after product purchase by customer
+# add review and rating system after product purchase by customer - [DONE]
 
 # Add Shipping table for admin(maintain Shipping history related to payment and Shipping status)
 
@@ -57,11 +57,12 @@ https://leetcode.com/discuss/interview-question/system-design/2019196/How-To-Des
 
 https://phpzag.com/star-rating-system-with-ajax-php-and-mysql
 
-# add varified user (*)
-# one user can comment only one's
+# add varified user (*) -[DONE]
+# one user can comment only one's [NOT REQUIRED]
 
 
 ======================================= BUGS ===========================================
+
 1.http://localhost/salt/cart
 # In Cart, if two white shirts of different size and color is added 
   then, on deleting one shirt , all others shirt also deleted.
@@ -107,5 +108,19 @@ method 2:
 - after Add to cart, for 30min it will substract from total stocks(it will give 30 min time to 
 customer to purchase the item) then automatically(using trigger) it will back to total quantity.
 
+# icon - for variation
+https://icons8.com/icons/set/verified
+
 
 https://www.furjaden.com/products/military-green-canvas-40l-travel-duffle-duff50
+
+# total Product and its variation
+@Query
+
+SELECT mp.product_name,mp.product_color_name,(pv.product_color_name)AS Variation  FROM tbl_main_product 
+AS mp INNER JOIN tbl_product_variation AS pv ON mp.product_uuid = pv.product_uuid;
+
+product_name	            | product_color_name	| Variation	
+---------------------------------------------------------------------
+Black Shirt Round Coller  | Black               | Blue
+White T-Shirt             | White               | Yellow

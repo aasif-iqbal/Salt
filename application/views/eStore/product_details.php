@@ -334,7 +334,8 @@ $oneStarRating = 0;
 // $rateResult = [2,4,5,1,2,....];
 // print_r($rateResult);
 // while ($rate = mysqli_fetch_assoc($rateResult)) {
-foreach($rateResult as $rate){
+if(isset($rateResult)){
+  foreach($rateResult as $rate){
 	
   $ratingNumber += $rate['rating_number'];  //total ie(2+4+5+1+2+1...)
 	
@@ -352,7 +353,7 @@ foreach($rateResult as $rate){
 		$oneStarRating += 1;
 	}
 }
-
+}
 $average = 0;
 
 if ($ratingNumber && $count) {

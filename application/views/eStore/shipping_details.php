@@ -88,8 +88,16 @@
                             <p class="card-text" id='total_amount'>Total:Rs. <?= $total; ?></p>
                             
                             <button class='btn btn-dark mt-1' id="rzp-button1" value="pay" onclick="pay_now_online()">Online Payment</button>
+                            <!-- captcha code for cod -->
 
-                            <button class='btn btn-dark mt-1 float-right' onclick="pay_now_cod()">Cash on delivery</button>
+                            <!-- <div id='show_captcha'><div>
+                            <button onclick='changeCaptcha(7)'>change</button><br>
+                            <input type='text' id='captcha_value' value='' name=''><br>
+                            <button onclick='checkCaptcha()'>Submit</button>
+ -->
+
+                            <!-- end captcha code for cod -->
+                            <button class='btn btn-dark mt-1 float-right' id='cod' onclick="pay_now_cod()">Cash on delivery</button>
                         </div>
                 </div>
             </div>
@@ -98,6 +106,25 @@
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <!-- sample upi and card name -->
     <!-- https://razorpay.com/docs/payments/payment-gateway/web-integration/hosted/test-integration -->
+    <script>
+        var show_captcha = document.getElementById('show_captcha');
+
+        function changeCaptcha(length) {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+    let counter = 0;
+    while (counter < length) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      counter += 1;
+    }
+    
+    show_captcha.innerHTML = result;
+    // return result;
+}
+
+ 
+    </script>
         <script>
             var project_info = `<?= json_encode($customerCartItems_Json) ?>`;
             projectInfo_Json = JSON.parse(project_info);
