@@ -26,6 +26,7 @@ https://www.codefixup.com/php-razorpay-payment-gateway/
 
 # Add COD(Cash On Delivery) option -- [DONE]
 use captcha 
+https://codepen.io/jhonycertz/pen/pQbaPW
 
 https://dev.to/movingmelody/build-a-captcha-code-generator-using-javascript-2ea6
 
@@ -124,3 +125,6 @@ product_name	            | product_color_name	| Variation
 ---------------------------------------------------------------------
 Black Shirt Round Coller  | Black               | Blue
 White T-Shirt             | White               | Yellow
+
+
+https://stackoverflow.com/questions/6074833/load-and-execute-javascript-code-synchronously

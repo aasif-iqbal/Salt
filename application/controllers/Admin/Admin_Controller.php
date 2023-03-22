@@ -485,6 +485,21 @@ class Admin_Controller extends CI_Controller {
 		}
 		
 	}
+	
+	public function show_total_stocks(){
+		
+		$data['total_stocks'] = $this->Admin_model->total_stocks();
+
+		$this->load->view('admin/header');	
+		$this->load->view('admin/side_nav');	
+		$this->load->view('admin/top_nav');
+		
+		// main-contain
+		$this->load->view('admin/total_stocks', $data);
+
+		$this->load->view('admin/footer');	
+	}
+
 
 /*
 	public function uploadVideos(){
@@ -541,5 +556,8 @@ class Admin_Controller extends CI_Controller {
         }
     }
 */
+
+
+
 
 }

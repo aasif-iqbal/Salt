@@ -7,11 +7,15 @@
 <!-- Topbar -->
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
+<button type="button" class="btn btn-secondary btn-sm" onclick='toggle()'>toggle</button>
     <!-- Sidebar Toggle (Topbar) -->
     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
     </button>
-
+    
+    <script src="<?= base_url('assets/js/script.js');?>"></script>
+    
+    
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
 
@@ -79,3 +83,4 @@
 
 </nav>
 <!-- End of Topbar -->
+

@@ -107,3 +107,5 @@ $route['show-shipping'] = 'Admin/Admin_Controller/show_shipping';
 $route['status'] = 'Admin/Admin_Controller/show_shipping_status';
 $route['update-shipping'] = 'Admin/Admin_Controller/update_shipping_status';
 
+$route['show-stocks'] = 'Admin/Admin_Controller/show_total_stocks';
+

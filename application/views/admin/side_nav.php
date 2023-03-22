@@ -4,8 +4,11 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
+        <div id="sideNav_menu">
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    
 
+        
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" 
             href="<?= base_url('/'); ?>">
@@ -94,6 +97,22 @@
                 </a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('show-stocks'); ?>">
+                <i class="fas fa-regular fa-truck"></i>
+                    <span>Add Colors</span>
+                </a>
+            </li>
+
+            <!-- Shipping -->
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('show-stocks'); ?>">
+                <i class="fas fa-regular fa-truck"></i>
+                    <span>Total Stocks</span>
+                </a>
+            </li>
+
+
             <!-- Nav Item - Utilities Collapse Menu -->
             <!-- <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
@@ -169,3 +188,4 @@
 
         </ul>
         <!-- End of Sidebar -->
+    </div>
