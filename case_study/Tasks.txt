@@ -1,6 +1,5 @@
 https://mysql.tutorials24x7.com/blog/guide-to-design-database-for-shopping-cart-in-mysql
 
-
 # Create invantorty management for stocks,price,discount and mrp (Edit-Add variation section) 
 
 # Create view that Admin can view all products in details and all variation also each color variation (use data-table for it)
@@ -127,6 +126,7 @@ Black Shirt Round Coller  | Black               | Blue
 White T-Shirt             | White               | Yellow
 
 
+
 https://stackoverflow.com/questions/6074833/load-and-execute-javascript-code-synchronously
 
 # MySQL, update multiple tables with one query
@@ -140,3 +140,6 @@ SET Orders.Quantity = Orders.Quantity + 2,
 WHERE
     Books.BookID = Orders.BookID
     AND Orders.OrderID = 1002;
+
+
+https://bindassbuddy.in/

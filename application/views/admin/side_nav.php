@@ -4,10 +4,10 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <div id="sideNav_menu">
+        <div id="sideNav_menu" style="background-color:#224abe;">
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
     
-
+         
         
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" 

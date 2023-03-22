@@ -8,10 +8,12 @@
 </head>
 <body>
 <!-- <form method="post" action="</?php echo base_url('update/'.$data->emp_id);?>">   -->
-    <?php print_r($productsWithVariations[0]);?>
+    <!-- </?php print_r($productsWithVariations[0]);?> -->
     <div class="container">
     <div class="card p-5">
+    
     <h3>update main product</h3>
+
     <form action="<?= base_url('update-product/').$productsWithVariations[0]['product_uuid']?>" method="POST">
   <div class="form-row">
     <div class="col">   
@@ -23,46 +25,83 @@
       <input type="text" class="form-control" placeholder="<?= $productsWithVariations[0]['article_no']?>"readonly>
     </div>
   </div>
+
   <div class="form-row mt-2">
-    <div class="col">        
+    <div class="col">    
+    <label for="">Article no.</label>         
       <input type="text" class="form-control" name="product_name" value="<?= $productsWithVariations[0]['product_name']?>"
        placeholder="First name">
     </div>
     <div class="col">
-      <input type="text" class="form-control" placeholder="Last name">
+    <label for="">Article no.</label>     
+      <input type="text" class="form-control" placeholder="color">
     </div>
   </div>
+
   <div class="form-row mt-2">
-    <div class="col">        
-      <input type="text" class="form-control" placeholder="First name">
+    <div class="col">  
+    <label for="">Article no.</label>           
+      <input type="text" class="form-control" placeholder="Size">
     </div>
     <div class="col">
-      <input type="text" class="form-control" placeholder="Last name">
+    <label for="">Article no.</label>     
+      <input type="text" class="form-control" placeholder="Stock">
     </div>
   </div>
+
+  <div class="form-row mt-2">
+    <div class="col">    
+    <label for="">Article no.</label>         
+      <input type="text" class="form-control" placeholder="mrp">
+    </div>
+    <div class="col">
+    <label for="">Article no.</label>     
+      <input type="text" class="form-control" placeholder="sp">
+    </div>
+    <div class="col">
+    <label for="">Article no.</label>     
+      <input type="text" class="form-control" placeholder="dis">
+    </div>
+  </div>
+
   <hr>
   <h3>update product variation</h3>
 
   <div class="form-row mt-2">
     <div class="col">        
-      <input type="text" class="form-control" name="product_name" value="<?= $productsWithVariations[0]['product_name']?>"
+    <label for="">Color</label>     
+      <input type="text" class="form-control" name="color" value=""
        placeholder="First name">
     </div>
     <div class="col">
+    <label for="">Size</label>     
       <input type="text" class="form-control" placeholder="Last name">
     </div>
   </div>
 
   <div class="form-row mt-2">
     <div class="col">        
+    <label for="">Stocks</label>     
       <input type="text" class="form-control" placeholder="First name">
     </div>
     <div class="col">
+    <label for="">MRP</label>     
       <input type="text" class="form-control" placeholder="Last name">
     </div>
-    
-    
+  </div>
+
+  <div class="form-row mt-2">
+    <div class="col">        
+    <label for="">Selling Price</label>     
+      <input type="text" class="form-control" placeholder="First name">
     </div>
+    <div class="col">
+    <label for="">Discount(%)</label>     
+      <input type="text" class="form-control" placeholder="Last name">
+    </div>
+  </div>
+
+
     <hr>
     <div class="float-right">
     <button type="submit" name="update" value="update" class="btn btn-primary">Update</button>

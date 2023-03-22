@@ -516,7 +516,7 @@ class Admin_Controller extends CI_Controller {
 	public function update_product_with_variation($product_uuid)
 	{
 		$main_product['product_name'] = $this->input->post('product_name');
-		var_dump($product_name);die();
+		var_dump($main_product['product_name']);die();
 	}
 
 
