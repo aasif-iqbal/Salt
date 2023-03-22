@@ -305,6 +305,7 @@
     public function total_stocks()
     {
         $query = "SELECT 
+                    mp.product_uuid,
                     mp.product_name,
                     mp.article_no,
                     (mp.product_color_name) AS main_color,
@@ -332,6 +333,58 @@
             return NULL;
         }        
     }
+
+    public function fetchProductsWithVariations($product_uuid)
+    {
+        $query = "SELECT 
+        mp.product_uuid,
+        mp.product_name,
+        mp.article_no,
+        (mp.product_color_name) AS main_color,
+        (mp.product_size_name) As main_size,
+        (mp.product_quantity) AS main_stocks,
+        (mp.product_mrp) AS main_mrp,
+        (mp.product_selling_price) AS main_sp,
+        (mp.discount_percentage) AS main_discount,
+        (pv.product_color_name)AS color_v,                    
+        (pv.product_size_name) As size_v,
+        (pv.product_quantity) AS stocks_v,
+        (pv.product_mrp) AS mrp_v,
+        (pv.product_selling_price) AS sp_v,
+        (pv.discount_percentage) AS discount_v                  
+        FROM tbl_main_product AS mp INNER JOIN
+        tbl_product_variation AS pv 
+        ON mp.product_uuid = pv.product_uuid AND mp.product_uuid = '$product_uuid'";
+
+        $q = $this->db->query($query);        
+
+        if ($q->num_rows() > 0) {
+            return $q->result_array();       
+        }   
+        else {
+            return NULL;
+        }        
+    }
+
+    public function update_product_with_variation($product_uuid)
+    {
+        print_r($product_uuid);
+    //     if($product_uuid){    
+    //         $this->db->set('shipping_status', '1', FALSE);
+    //         $this->db->where('conformation_code', $conformation_code);        
+    //         $this->db->update('tbl_shipping_orders');
+
+    //         // update table:tbl_mapping_orderedProducts_user
+    //         $this->db->set('shipping_status', '1', FALSE);
+    //         $this->db->where('delivery_confirm_code', $conformation_code);        
+    //         $this->db->update('tbl_mapping_orderedProducts_user');
+
+    //     return TRUE;
+    // }else{
+    //         echo "Error: " .  $this->db->_error_message();
+    //     return FALSE;
+    }
+    
 
 } //class-ends
 

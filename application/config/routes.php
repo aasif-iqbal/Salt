@@ -109,3 +109,10 @@ $route['update-shipping'] = 'Admin/Admin_Controller/update_shipping_status';
 
 $route['show-stocks'] = 'Admin/Admin_Controller/show_total_stocks';
 
+$route['edit-product/(:any)'] = 'Admin/Admin_Controller/edit_product_with_variation/$1';
+
+// $route['edit-product/(product_uuid)'] = 'Admin/Admin_Controller/edit_product_with_variation/$1'; $1=>$product_uuid ie function f_name($params=$product_uuid){}
+
+$route['update-product/(:any)'] = 'Admin/Admin_Controller/update_product_with_variation/$1';
+
+

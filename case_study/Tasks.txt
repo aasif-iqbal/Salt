@@ -128,3 +128,15 @@ White T-Shirt             | White               | Yellow
 
 
 https://stackoverflow.com/questions/6074833/load-and-execute-javascript-code-synchronously
+
+# MySQL, update multiple tables with one query
+https://stackoverflow.com/questions/4361774/mysql-update-multiple-tables-with-one-query
+
+Take the case of two tables, Books and Orders. In case, we increase the number of books in a particular order with Order.ID = 1002 in Orders table then we also need to reduce that the total number of books available in our stock by the same number in Books table.
+
+UPDATE Books, Orders
+SET Orders.Quantity = Orders.Quantity + 2,
+    Books.InStock = Books.InStock - 2
+WHERE
+    Books.BookID = Orders.BookID
+    AND Orders.OrderID = 1002;

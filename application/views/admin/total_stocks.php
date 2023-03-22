@@ -25,21 +25,21 @@
 
   <thead>
     <tr>
-      <th scope="col" class="table-active">Product Name</th>
+      <th scope="col" class="table-dark">Product__Name</th>
       <th scope="col" class="table-active">Article</th>
       <th scope="col" class='table-info'>M_Color</th>  
-      <th scope="col" class='table-primary'>M_Size</th>
-      <th scope="col" class='table-success'>M_Stock</th>
-      <th scope="col" class='table-success'>MRP</th>
-      <th scope="col" class='table-danger'>SP</th>
-      <th scope="col" class='table-success'>DIS(%)</th>
-      <th scope="col">V_Color</th>          
-      <th scope="col">V_Size</th>
-      <th scope="col">V_Stock</th>
+      <th scope="col" class='table-info'>M_Size</th>
+      <th scope="col" class='table-info'>M_Stock</th>
+      <th scope="col" class='table-info'>MRP</th>
+      <th scope="col" class='table-info'>SP</th>
+      <th scope="col" class='table-info'>DIS(%)</th>
+      <th scope="col" class='table-success'>V_Color</th>          
+      <th scope="col" class='table-success'>V_Size</th>
+      <th scope="col"class='table-success'>V_Stock</th>
       <th scope="col" class='table-success'>MRP</th>
       <th scope="col" class='table-success'>SP</th>
       <th scope="col" class='table-success'>DIS(%)</th>
-      <th scope="col" class='table-success'>Action</th>
+      <th scope="col" class='table-danger'>Action</th>
     </tr>
   </thead>
   <tbody>
@@ -51,29 +51,29 @@
         foreach($total_stocks as $stock):
     ?>
     <tr>
-      <th scope="row" class="table-active"><?= $stock['product_name']; ?></th>
+      <th scope="row" class="table-dark"><?= $stock['product_name']; ?></th>
       <th scope="row" class="table-active"><?= $stock['article_no']; ?></th>
       
       <td class='table-info'><?= $stock['main_color']; ?></td>
-      <td class='table-primary'><?= $stock['main_size']; ?></td>
-      <td class='table-success'><?= $stock['main_stocks']; ?></td> 
-      <td class='table-success'><?= $stock['main_mrp']; ?></td> 
-      <td class='table-danger'><?= $stock['main_sp']; ?></td> 
-      <td class='table-success'><?= $stock['main_discount']; ?></td> 
+      <td class='table-info'><?= $stock['main_size']; ?></td>
+      <td class='table-info'><?= $stock['main_stocks']; ?></td> 
+      <td class='table-info'><?= $stock['main_mrp']; ?></td> 
+      <td class='table-info'><?= $stock['main_sp']; ?></td> 
+      <td class='table-info'><?= $stock['main_discount']; ?></td> 
       
-      <td><?= $stock['color_v']; ?></td>                 
-      <td><?= $stock['size_v']; ?></td>            
-      <td><?= $stock['stocks_v']; ?></td>       
+      <td class='table-success'><?= $stock['color_v']; ?></td>                 
+      <td class='table-success'><?= $stock['size_v']; ?></td>            
+      <td class='table-success'><?= $stock['stocks_v']; ?></td>       
       <td class='table-success'><?= $stock['mrp_v']; ?></td> 
       <td class='table-success'><?= $stock['sp_v']; ?></td> 
       <td class='table-success'><?= $stock['discount_v']; ?></td> 
-
-      <td class='table-success'>
-        <button type="button" class="btn btn-info btn-sm">E</button>
+      
+      <td class='table-danger'>
+        <a href="<?= base_url('edit-product/').$stock['product_uuid']; ?>" role="button" class="btn btn-info btn-sm">E</a>
         <button type="button" class="btn btn-light btn-sm">X</button>
       </td> 
     </tr>
-    <?php endforeach;} ?>
+    <?php endforeach; } ?>
   </tbody>
 </table>
 </div>

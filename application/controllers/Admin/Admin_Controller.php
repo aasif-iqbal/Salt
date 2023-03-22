@@ -500,6 +500,25 @@ class Admin_Controller extends CI_Controller {
 		$this->load->view('admin/footer');	
 	}
 
+	public function edit_product_with_variation($product_uuid){
+		// var_dump($product_uuid);die();
+
+		$data['productsWithVariations'] = $this->Admin_model->fetchProductsWithVariations($product_uuid);
+		$this->load->view('admin/header');	
+		$this->load->view('admin/side_nav');	
+		$this->load->view('admin/top_nav');
+
+		$this->load->view('admin/edit_product', $data);
+		
+		$this->load->view('admin/footer');	
+	}
+
+	public function update_product_with_variation($product_uuid)
+	{
+		$main_product['product_name'] = $this->input->post('product_name');
+		var_dump($product_name);die();
+	}
+
 
 /*
 	public function uploadVideos(){
