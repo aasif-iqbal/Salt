@@ -152,6 +152,7 @@
     public function saveProductVariationDetails($data)
     {
         // print_r($data);
+        $this->db->set('variation_uuid','UUID()', FALSE);
         if($data){            
             $this->db->insert('tbl_product_variation', $data); 
             return TRUE;   
@@ -308,6 +309,7 @@
                     mp.product_uuid,
                     mp.product_name,
                     mp.article_no,
+                    pv.variation_uuid,
                     (mp.product_color_name) AS main_color,
                     (mp.product_size_name) As main_size,
                     (mp.product_quantity) AS main_stocks,
@@ -334,19 +336,25 @@
         }        
     }
 
-    public function fetchProductsWithVariations($product_uuid)
+    public function fetchProductsWithVariations($product_uuid, $variation_uuid)
     {
+        if($variation_uuid == NULL){
         $query = "SELECT 
         mp.product_uuid,
         mp.product_name,
-        mp.article_no,
+        mp.article_no,        
+        pv.variation_uuid,
+        (mp.product_color) AS main_color_id,
         (mp.product_color_name) AS main_color,
+        (mp.product_size) As main_size_id,
         (mp.product_size_name) As main_size,
         (mp.product_quantity) AS main_stocks,
         (mp.product_mrp) AS main_mrp,
         (mp.product_selling_price) AS main_sp,
-        (mp.discount_percentage) AS main_discount,
-        (pv.product_color_name)AS color_v,                    
+        (mp.discount_percentage) AS main_discount,        
+        (pv.product_color) AS color_v_id,                    
+        (pv.product_color_name) AS color_v,                    
+        (pv.product_size) As size_v_id,
         (pv.product_size_name) As size_v,
         (pv.product_quantity) AS stocks_v,
         (pv.product_mrp) AS mrp_v,
@@ -355,7 +363,34 @@
         FROM tbl_main_product AS mp INNER JOIN
         tbl_product_variation AS pv 
         ON mp.product_uuid = pv.product_uuid AND mp.product_uuid = '$product_uuid'";
-
+        }else{
+            $query = "SELECT 
+        mp.product_uuid,
+        mp.product_name,
+        mp.article_no,        
+        pv.variation_uuid,
+        (mp.product_color) AS main_color_id,
+        (mp.product_color_name) AS main_color,
+        (mp.product_size) As main_size_id,
+        (mp.product_size_name) As main_size,
+        (mp.product_quantity) AS main_stocks,
+        (mp.product_mrp) AS main_mrp,
+        (mp.product_selling_price) AS main_sp,
+        (mp.discount_percentage) AS main_discount,        
+        (pv.product_color) AS color_v_id,                    
+        (pv.product_color_name) AS color_v,                    
+        (pv.product_size) As size_v_id,
+        (pv.product_size_name) As size_v,
+        (pv.product_quantity) AS stocks_v,
+        (pv.product_mrp) AS mrp_v,
+        (pv.product_selling_price) AS sp_v,
+        (pv.discount_percentage) AS discount_v                  
+        FROM tbl_main_product AS mp INNER JOIN
+        tbl_product_variation AS pv 
+        ON mp.product_uuid = pv.product_uuid 
+        AND mp.product_uuid = '$product_uuid' 
+        AND pv.variation_uuid = '$variation_uuid'";
+        }
         $q = $this->db->query($query);        
 
         if ($q->num_rows() > 0) {
@@ -366,23 +401,60 @@
         }        
     }
 
-    public function update_product_with_variation($product_uuid)
+    public function update_product_with_variation($product_uuid, $variation_uuid, $main_product, $product_variation)
     {
-        print_r($product_uuid);
-    //     if($product_uuid){    
-    //         $this->db->set('shipping_status', '1', FALSE);
-    //         $this->db->where('conformation_code', $conformation_code);        
-    //         $this->db->update('tbl_shipping_orders');
+        // print_r($product_uuid);
+        // echo('<br/>');
+        // print_r($main_product);
+        // echo('<br/>');
+        // print_r($product_variation);
+        // echo('<br/>');
+        // print_r($variation_uuid);
+        // die();
 
-    //         // update table:tbl_mapping_orderedProducts_user
-    //         $this->db->set('shipping_status', '1', FALSE);
-    //         $this->db->where('delivery_confirm_code', $conformation_code);        
-    //         $this->db->update('tbl_mapping_orderedProducts_user');
+        if($main_product){
+            $updateData = array(
+                    'product_name' => $main_product['product_name'],
+                    'product_color' => $main_product['product_color'],
+                    'product_color_name' => $main_product['product_color_name'],
+                    'product_size' => $main_product['product_size'],
+                    'product_size_name' => $main_product['product_size_name'],
+                    'product_quantity' => $main_product['product_quantity'],
+                    'product_selling_price' => $main_product['product_selling_price'],
+                    'discount_percentage' => $main_product['discount_percentage'],
+                );
+        }
 
-    //     return TRUE;
-    // }else{
-    //         echo "Error: " .  $this->db->_error_message();
-    //     return FALSE;
+        if($product_variation){
+            $updateData2 = array(
+                'product_color' => $product_variation['product_color'],
+                'product_color_name' => $product_variation['product_color_name'],
+                'product_size' => $product_variation['product_size'],
+                'product_size_name' => $product_variation['product_size_name'],
+                'product_quantity' => $product_variation['product_quantity'],
+                'product_selling_price' => $product_variation['product_selling_price'],
+                'discount_percentage' => $product_variation['discount_percentage'],
+            );
+        }
+        
+        if($product_uuid){    
+            
+            // $this->db->set('product_name', $main_product['product_name'], FALSE);
+            $this->db->where('product_uuid', $product_uuid);        
+            $this->db->update('tbl_main_product', $updateData);
+
+            if($variation_uuid){              
+                // $this->db->set('shipping_status', '1', FALSE);
+                $this->db->where('variation_uuid', $variation_uuid);        
+                $this->db->where('product_uuid', $product_uuid);        
+                $this->db->update('tbl_product_variation',$updateData2);
+            }
+            return TRUE;
+        }else{
+                echo "Error: " .  $this->db->_error_message();
+            return FALSE;
+        }
+        
     }
     
 

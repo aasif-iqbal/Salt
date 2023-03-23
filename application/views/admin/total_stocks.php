@@ -69,7 +69,7 @@
       <td class='table-success'><?= $stock['discount_v']; ?></td> 
       
       <td class='table-danger'>
-        <a href="<?= base_url('edit-product/').$stock['product_uuid']; ?>" role="button" class="btn btn-info btn-sm">E</a>
+        <a href="<?= base_url('edit-product/').$stock['product_uuid'].'/'.$stock['variation_uuid']; ?>" role="button" class="btn btn-info btn-sm">E</a>
         <button type="button" class="btn btn-light btn-sm">X</button>
       </td> 
     </tr>

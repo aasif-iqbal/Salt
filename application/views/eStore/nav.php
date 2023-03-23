@@ -169,6 +169,7 @@
   $userLoginData = $this->session->userdata('userLoginData');  
   // var_dump($userLoginData);
   $cart_value = $this->session->userdata('cart_value');
+  // echo('cart_value:');
   // print_r($cart_value);
 ?>
         <!---------------------------------------- right icons --------------------------------->
@@ -202,8 +203,11 @@
         <a class="btn btn-outline-dark border-0" 
           href="<?= base_url('cart');?>" role="button">
           
-                  <?php if(isset($userLoginData) && isset($cart_value)){ ?>
-                  <span><i class="fa-solid fa-bag-shopping"></i>&nbsp;Bag(<?= isset($cart_value)?$cart_value:'0'; ?>)</span>
+                  <?php 
+                  
+                  if(isset($userLoginData)){ ?>
+                  
+                  <span><i class="fa-solid fa-bag-shopping"></i>&nbsp;Bag(<?= isset($cart_value) ? $cart_value:'0'; ?>)</span>
                   <?php }else{?>
                     <span><i class="fa-solid fa-bag-shopping"></i>&nbsp;Bag(<?= isset($item_count)?$item_count:'0'; ?>)</span>
                   <?php } ?>

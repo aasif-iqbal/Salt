@@ -7,7 +7,7 @@
 <!-- Topbar -->
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-<button type="button" class="btn btn-secondary btn-sm" onclick='toggle()'>toggle</button>
+<button type="button" class="btn btn-secondary btn-sm" onclick='toggle()'><i class="fas fa-solid fa-bars"></i></button>
     <!-- Sidebar Toggle (Topbar) -->
     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>

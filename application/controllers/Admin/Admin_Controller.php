@@ -500,10 +500,13 @@ class Admin_Controller extends CI_Controller {
 		$this->load->view('admin/footer');	
 	}
 
-	public function edit_product_with_variation($product_uuid){
-		// var_dump($product_uuid);die();
+	public function edit_product_with_variation($product_uuid, $variation_uuid = NULL){
+		// var_dump($variation_uuid);die();
 
-		$data['productsWithVariations'] = $this->Admin_model->fetchProductsWithVariations($product_uuid);
+		$data['productsWithVariations'] = $this->Admin_model->fetchProductsWithVariations($product_uuid, $variation_uuid);
+		$data['product_sizes'] = $this->Admin_model->showSizes();
+		$data['product_colors'] = $this->Admin_model->showColors();
+
 		$this->load->view('admin/header');	
 		$this->load->view('admin/side_nav');	
 		$this->load->view('admin/top_nav');
@@ -513,10 +516,56 @@ class Admin_Controller extends CI_Controller {
 		$this->load->view('admin/footer');	
 	}
 
-	public function update_product_with_variation($product_uuid)
+	 
+	public function update_product_with_variation($product_uuid, $variation_uuid = NULL)
 	{
+		// var_dump($variation_uuid);die();
+		//For Main Product
 		$main_product['product_name'] = $this->input->post('product_name');
-		var_dump($main_product['product_name']);die();
+				 
+		//for product_color and product_color_name
+		$result_explode_color = $this->input->post('product_color');		
+		$result_explode_color = explode('_', $result_explode_color);
+		$main_product['product_color'] = $result_explode_color[0];
+		$main_product['product_color_name'] = $result_explode_color[1];		
+		 
+		//for product_size and product_size_name
+		$result_explode_size = $this->input->post('product_size');
+		$result_explode_size = explode('_', $result_explode_size);
+		$main_product['product_size'] = $result_explode_size[0];
+		$main_product['product_size_name'] = $result_explode_size[1];	
+
+		$main_product['product_quantity'] = $this->input->post('product_quantity');
+		$main_product['product_selling_price'] 
+				= $this->input->post('product_selling_price');
+		$main_product['discount_percentage'] = $this->input->post('discount_percentage');
+		
+		
+		//For Product Variation
+		$result_explode_color_v = $this->input->post('product_color_v');
+		$result_explode_color_v = explode('_', $result_explode_color_v);
+		$product_variation['product_color'] = $result_explode_color_v[0];
+		$product_variation['product_color_name'] = $result_explode_color_v[1];		
+
+
+		$result_explode_size_v = $this->input->post('product_size_v');
+		$result_explode_size_v = explode('_', $result_explode_size_v);
+		$product_variation['product_size'] = $result_explode_size_v[0];
+		$product_variation['product_size_name'] = $result_explode_size_v[1];
+		
+
+		$product_variation['product_quantity'] = $this->input->post('product_quantity_v');
+		$product_variation['product_mrp'] = $this->input->post('product_mrp_v');
+		$product_variation['product_selling_price'] = $this->input->post('product_selling_price_v');
+		$product_variation['discount_percentage'] = $this->input->post('discount_percentage_v');
+		
+		$status = $this->Admin_model->update_product_with_variation($product_uuid,$variation_uuid, $main_product,$product_variation);
+		
+		if($status){
+			redirect('show-stocks', 'refresh');
+		}
+		// var_dump($main_product);
+		// var_dump($product_variation);die();
 	}
 
 
