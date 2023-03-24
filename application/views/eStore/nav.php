@@ -186,9 +186,9 @@
             </h6></li>
             <li><a type="button" href="<?= base_url('login'); ?>" class="btn btn-outline-danger btn-sm ml-4">LOGIN / SIGNUP</a></li>
             <hr class="mx-2">
-            <li><a class="dropdown-item" href="#">Orders</a></li>
+            <li><a class="dropdown-item" href="<?= base_url('orders'); ?>">Orders</a></li>
             <li><a class="dropdown-item" href="#">Contact Us</a></li>
-            <li><a class="dropdown-item" href="#">Coupons</a></li>
+            <!-- <li><a class="dropdown-item" href="#">Coupons</a></li> -->
             <li><a class="dropdown-item" href="#">Edit Profile</a></li>
             <li><a class="dropdown-item" href="<?= base_url('logout'); ?>">Logout</a></li>
         </ul>

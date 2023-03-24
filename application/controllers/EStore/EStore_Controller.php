@@ -440,7 +440,14 @@ public function cashOnDelivery_ajax()
 public function onlinePayment_ajax()
 {
 	$data['transaction_id'] = $this->input->post('payment_id');
+	
 	$data['productInfo_json'] = $this->input->post('productInfo_json');
+	/*
+		loop each product with new order_uuid So that, 
+		User will able to cancel single product with single order_uuid
+		$val = $data['productInfo_json'];
+	*/
+
 	$data['total_amount'] = $this->input->post('total_amount');	
 	$data['user_uuid'] = $this->input->post('user_uuid');
 	
@@ -451,12 +458,22 @@ public function onlinePayment_ajax()
 	echo json_encode($status);	 	
 }
 
+
 public function thankYouPage()
 {
 	$this->load->view('eStore/libs');
 	return $this->load->view('eStore/thankyou');
 }
 
+public function customer_orders()
+{
+	$data['nav_categories'] = $this->EStore_model->fetch_categories_for_parent();
+
+	$this->load->view('eStore/libs');
+	$this->load->view('eStore/nav', $data);
+	$this->load->view('EStore/customer_orders');
+	$this->load->view('eStore/footer');	
+}
 // ============================== End Shipping_details ==================================
 
 // ==============================

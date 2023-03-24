@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 20, 2023 at 10:29 AM
+-- Generation Time: Mar 24, 2023 at 10:01 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.29
 
@@ -80,7 +80,8 @@ CREATE TABLE `tbl_cart` (
 --
 
 INSERT INTO `tbl_cart` (`cart_id`, `user_uuid`, `product_uuid`, `localstorage_id`, `product_name`, `product_image`, `product_quantity`, `product_size_id`, `product_size_name`, `product_color_id`, `product_color_name`, `product_mrp`, `product_selling_price`, `product_discount`, `total_quantity_inStock`, `item_count`, `created_at`, `updated_at`, `status`) VALUES
-(5, '988f64b4-bc4a-11ed-bb06-98460a99789a', '616eedc2-be77-11ed-b750-98460a99789a', NULL, 'Black Shirt Round Coller', 'p2.jpg', 2, 4, 'XL', 3, 'Blue', '999', '1', 10, 0, '25', '2023-03-19 17:17:33.155108', '0000-00-00 00:00:00.000000', 0);
+(5, '988f64b4-bc4a-11ed-bb06-98460a99789a', '616eedc2-be77-11ed-b750-98460a99789a', NULL, 'Black Shirt Round Coller', 'p2.jpg', 1, 4, 'XL', 3, 'Blue', '999', '1', 10, 0, '25', '2023-03-23 05:23:47.076921', '0000-00-00 00:00:00.000000', 0),
+(6, '988f64b4-bc4a-11ed-bb06-98460a99789a', 'c6b04c52-c256-11ed-bf9a-98460a99789a', NULL, 'White T-Shirt', '0_4.jpg', 1, 2, 'M', 5, 'Yellow', '999', '1', 10, 0, '26', '2023-03-20 18:18:14.194907', '0000-00-00 00:00:00.000000', 0);
 
 -- --------------------------------------------------------
 
@@ -246,8 +247,8 @@ CREATE TABLE `tbl_main_product` (
   `product_color` varchar(255) NOT NULL,
   `product_color_name` varchar(255) NOT NULL,
   `product_quantity` int(100) NOT NULL,
-  `product_mrp` float(20,2) NOT NULL,
-  `product_selling_price` float(20,2) NOT NULL,
+  `product_mrp` int(6) NOT NULL,
+  `product_selling_price` int(6) NOT NULL,
   `discount_percentage` int(2) NOT NULL,
   `created_at` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
   `updated_at` timestamp(6) NOT NULL DEFAULT '0000-00-00 00:00:00.000000',
@@ -260,8 +261,33 @@ CREATE TABLE `tbl_main_product` (
 --
 
 INSERT INTO `tbl_main_product` (`product_id`, `product_uuid`, `product_name`, `slug_product`, `brand_name`, `article_no`, `parent_cat_id`, `child_cat_id`, `slug_cat_child`, `product_main_image`, `product_short_description`, `product_long_description`, `product_size`, `product_size_name`, `product_color`, `product_color_name`, `product_quantity`, `product_mrp`, `product_selling_price`, `discount_percentage`, `created_at`, `updated_at`, `status`, `isActive`) VALUES
-(1, '616eedc2-be77-11ed-b750-98460a99789a', 'Black Shirt Round Coller', 'black-shirt-round-coller', 'ZARA', '', 1, 5, 'shirt', 'p2.jpg', 'Black Shirt Round Coller', '<ul>\r\n	<li>Care Instructions: Machine Wash</li>\r\n	<li>Fit Type: Regular Fit</li>\r\n	<li>Soft and Breathable 100% Cotton Fabric</li>\r\n	<li>Mandarin collar solid color shirt</li>\r\n	<li>Single pocket at chest</li>\r\n	<li>Regular fit long sleeve shirt</li>\r\n	<l', '2', 'M', '2', 'Black', 10, 2.00, 1.00, 50, '2023-03-09 12:39:06.337638', '0000-00-00 00:00:00.000000', 1, 1),
-(2, 'c6b04c52-c256-11ed-bf9a-98460a99789a', 'White T-Shirt', 'white-t-shirt', 'ZARA', 'A989YUTE', 1, 1, 't-shirts', '0_4.jpg', 'White T-Shirt Round neck', '<ul>\r\n	<li>White T-Shirt Round neck</li>\r\n	<li>White T-Shirt Round neck</li>\r\n	<li>White T-Shirt Round neck</li>\r\n	<li>White T-Shirt Round neck</li>\r\n	<li>White T-Shirt Round neck</li>\r\n</ul>\r\n', '2', 'M', '9', 'White', 15, 2.00, 1.00, 50, '2023-03-14 10:55:47.476906', '0000-00-00 00:00:00.000000', 1, 1);
+(1, '616eedc2-be77-11ed-b750-98460a99789a', 'Black Shirt Round ', 'black-shirt-round-coller', 'ZARA', '', 1, 5, 'shirt', 'p2.jpg', 'Black Shirt Round Coller', '<ul>\r\n	<li>Care Instructions: Machine Wash</li>\r\n	<li>Fit Type: Regular Fit</li>\r\n	<li>Soft and Breathable 100% Cotton Fabric</li>\r\n	<li>Mandarin collar solid color shirt</li>\r\n	<li>Single pocket at chest</li>\r\n	<li>Regular fit long sleeve shirt</li>\r\n	<l', '2', 'M', '2', 'Black', 10, 2, 100, 50, '2023-03-23 11:25:32.443816', '0000-00-00 00:00:00.000000', 1, 1),
+(2, 'c6b04c52-c256-11ed-bf9a-98460a99789a', 'White T-Shirt ', 'white-t-shirt', 'ZARA', 'A989YUTE', 1, 1, 't-shirts', '0_4.jpg', 'White T-Shirt Round neck', '<ul>\r\n	<li>White T-Shirt Round neck</li>\r\n	<li>White T-Shirt Round neck</li>\r\n	<li>White T-Shirt Round neck</li>\r\n	<li>White T-Shirt Round neck</li>\r\n	<li>White T-Shirt Round neck</li>\r\n</ul>\r\n', '5', 'XXL', '9', 'White', 15, 2, 1, 50, '2023-03-23 11:34:33.821606', '0000-00-00 00:00:00.000000', 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_mapping_orderedProducts_user`
+--
+
+CREATE TABLE `tbl_mapping_orderedProducts_user` (
+  `mapping_id` int(11) NOT NULL,
+  `user_uuid` varchar(255) NOT NULL,
+  `product_uuid` varchar(255) NOT NULL,
+  `product_name` varchar(25) NOT NULL,
+  `shipping_status` int(2) NOT NULL COMMENT '0 => Pending\r\n1 => delivered',
+  `delivery_confirm_code` int(8) NOT NULL,
+  `isActive` int(2) NOT NULL DEFAULT 1,
+  `createdAt` datetime(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_mapping_orderedProducts_user`
+--
+
+INSERT INTO `tbl_mapping_orderedProducts_user` (`mapping_id`, `user_uuid`, `product_uuid`, `product_name`, `shipping_status`, `delivery_confirm_code`, `isActive`, `createdAt`) VALUES
+(1, '988f64b4-bc4a-11ed-bb06-98460a99789a', '616eedc2-be77-11ed-b750-98460a99789a', 'Black Shirt Round Coller', 1, 320274, 1, '0000-00-00 00:00:00.000000'),
+(2, '988f64b4-bc4a-11ed-bb06-98460a99789a', 'c6b04c52-c256-11ed-bf9a-98460a99789a', 'White T-Shirt', 1, 320274, 1, '0000-00-00 00:00:00.000000');
 
 -- --------------------------------------------------------
 
@@ -272,30 +298,61 @@ INSERT INTO `tbl_main_product` (`product_id`, `product_uuid`, `product_name`, `s
 CREATE TABLE `tbl_orders` (
   `order_id` int(12) NOT NULL,
   `order_uuid` varchar(255) NOT NULL,
-  `productInfo_json` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`productInfo_json`)),
   `user_uuid` varchar(255) NOT NULL,
+  `product_uuid` varchar(255) NOT NULL,
+  `product_name` varchar(255) NOT NULL,
+  `product_image` varchar(255) NOT NULL,
+  `product_size_id` int(2) NOT NULL,
+  `product_size_name` varchar(25) NOT NULL,
+  `product_color_id` int(2) NOT NULL,
+  `product_color_name` varchar(25) NOT NULL,
+  `product_mrp` int(6) NOT NULL,
+  `product_selling_price` int(6) NOT NULL,
+  `product_discount` int(3) NOT NULL,
+  `article_no` varchar(15) NOT NULL,
+  `product_quantity` int(6) NOT NULL,
   `user_name` varchar(20) NOT NULL,
-  `email` varchar(25) NOT NULL,
+  `user_email` varchar(25) NOT NULL,
   `phone_no` varchar(15) NOT NULL,
+  `receivers_phone_no` varchar(15) NOT NULL,
+  `addr_house_no` varchar(50) NOT NULL,
+  `addr_locality` varchar(100) NOT NULL,
+  `addr_city` varchar(50) NOT NULL,
+  `addr_pin_code` int(10) NOT NULL,
+  `addr_state` varchar(20) NOT NULL,
+  `addr_country` varchar(10) NOT NULL,
+  `addr_type` int(2) NOT NULL,
   `total_product_quantity` int(10) NOT NULL,
   `total_amount` int(6) NOT NULL,
   `transaction_id` varchar(25) NOT NULL,
   `transaction_status` int(2) NOT NULL COMMENT '0=> Online\r\n1=> COD',
   `conformation_code` int(8) NOT NULL,
   `payment_method` varchar(25) NOT NULL,
-  `transaction_datetime` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6)
+  `productInfo_json` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`productInfo_json`)),
+  `transaction_datetime` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
+  `createdAt` timestamp(6) NOT NULL DEFAULT '0000-00-00 00:00:00.000000',
+  `updatedAt` timestamp(6) NOT NULL DEFAULT '0000-00-00 00:00:00.000000',
+  `status` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_orders`
 --
 
-INSERT INTO `tbl_orders` (`order_id`, `order_uuid`, `productInfo_json`, `user_uuid`, `user_name`, `email`, `phone_no`, `total_product_quantity`, `total_amount`, `transaction_id`, `transaction_status`, `conformation_code`, `payment_method`, `transaction_datetime`) VALUES
-(1, 'fe1d9044-c627-11ed-95a8-98460a99789a', '[{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"c6b04c52-c256-11ed-bf9a-98460a99789a\",\"product_name\":\"White T-Shirt\",\"product_image\":\"0_4.jpg\",\"product_quantity\":\"2\",\"product_size_name\":\"M\",\"product_color_name\":\"Yellow\",\"product_selling_price\":\"1\"}]', '988f64b4-bc4a-11ed-bb06-98460a99789a', '', '', '', 0, 0, '', 1, 94522, '', '2023-03-19 03:00:58.000000'),
-(2, '6e4d4b60-c62e-11ed-95a8-98460a99789a', '[{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"616eedc2-be77-11ed-b750-98460a99789a\",\"product_name\":\"Black Shirt Round Coller\",\"product_image\":\"p2.jpg\",\"product_quantity\":\"1\",\"product_size_name\":\"XL\",\"product_color_name\":\"Blue\",\"product_selling_price\":\"1\"}]', '988f64b4-bc4a-11ed-bb06-98460a99789a', '', '', '', 0, 0, '', 1, 18403, '', '2023-03-19 03:47:03.000000'),
-(3, 'f3414aa6-c679-11ed-b1e2-98460a99789a', '[{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"616eedc2-be77-11ed-b750-98460a99789a\",\"product_name\":\"Black Shirt Round Coller\",\"product_image\":\"p2.jpg\",\"product_quantity\":\"2\",\"product_size_name\":\"XL\",\"product_color_name\":\"Blue\",\"product_selling_price\":\"1\"}]', '988f64b4-bc4a-11ed-bb06-98460a99789a', '', '', '', 0, 0, '', 1, 992851, '', '2023-03-19 12:47:39.000000'),
-(4, '47ed4c08-c67a-11ed-b1e2-98460a99789a', '[{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"616eedc2-be77-11ed-b750-98460a99789a\",\"product_name\":\"Black Shirt Round Coller\",\"product_image\":\"p2.jpg\",\"product_quantity\":\"2\",\"product_size_name\":\"XL\",\"product_color_name\":\"Blue\",\"product_selling_price\":\"1\"}]', '988f64b4-bc4a-11ed-bb06-98460a99789a', '', '', '', 0, 0, '', 1, 444126, '', '2023-03-19 12:50:01.000000'),
-(5, '1abcff16-c699-11ed-b1e2-98460a99789a', '[{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"616eedc2-be77-11ed-b750-98460a99789a\",\"product_name\":\"Black Shirt Round Coller\",\"product_image\":\"p2.jpg\",\"product_quantity\":\"2\",\"product_size_name\":\"XL\",\"product_color_name\":\"Blue\",\"product_selling_price\":\"1\"}]', '988f64b4-bc4a-11ed-bb06-98460a99789a', '', '', '', 0, 2, 'pay_LTWWe08ZQPBfwQ', 0, 0, '', '2023-03-19 16:30:39.000000');
+INSERT INTO `tbl_orders` (`order_id`, `order_uuid`, `user_uuid`, `product_uuid`, `product_name`, `product_image`, `product_size_id`, `product_size_name`, `product_color_id`, `product_color_name`, `product_mrp`, `product_selling_price`, `product_discount`, `article_no`, `product_quantity`, `user_name`, `user_email`, `phone_no`, `receivers_phone_no`, `addr_house_no`, `addr_locality`, `addr_city`, `addr_pin_code`, `addr_state`, `addr_country`, `addr_type`, `total_product_quantity`, `total_amount`, `transaction_id`, `transaction_status`, `conformation_code`, `payment_method`, `productInfo_json`, `transaction_datetime`, `createdAt`, `updatedAt`, `status`) VALUES
+(1, 'fe1d9044-c627-11ed-95a8-98460a99789a', '988f64b4-bc4a-11ed-bb06-98460a99789a', '', '', '', 0, '', 0, '', 0, 0, 0, '', 0, '', '', '', '', '', '', '', 0, '', '', 0, 0, 0, '', 1, 94522, '', '[{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"c6b04c52-c256-11ed-bf9a-98460a99789a\",\"product_name\":\"White T-Shirt\",\"product_image\":\"0_4.jpg\",\"product_quantity\":\"2\",\"product_size_name\":\"M\",\"product_color_name\":\"Yellow\",\"product_selling_price\":\"1\"}]', '2023-03-19 03:00:58.000000', '0000-00-00 00:00:00.000000', '0000-00-00 00:00:00.000000', 0),
+(2, '6e4d4b60-c62e-11ed-95a8-98460a99789a', '988f64b4-bc4a-11ed-bb06-98460a99789a', '', '', '', 0, '', 0, '', 0, 0, 0, '', 0, '', '', '', '', '', '', '', 0, '', '', 0, 0, 0, '', 1, 18403, '', '[{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"616eedc2-be77-11ed-b750-98460a99789a\",\"product_name\":\"Black Shirt Round Coller\",\"product_image\":\"p2.jpg\",\"product_quantity\":\"1\",\"product_size_name\":\"XL\",\"product_color_name\":\"Blue\",\"product_selling_price\":\"1\"}]', '2023-03-19 03:47:03.000000', '0000-00-00 00:00:00.000000', '0000-00-00 00:00:00.000000', 0),
+(3, 'f3414aa6-c679-11ed-b1e2-98460a99789a', '988f64b4-bc4a-11ed-bb06-98460a99789a', '', '', '', 0, '', 0, '', 0, 0, 0, '', 0, '', '', '', '', '', '', '', 0, '', '', 0, 0, 0, '', 1, 992851, '', '[{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"616eedc2-be77-11ed-b750-98460a99789a\",\"product_name\":\"Black Shirt Round Coller\",\"product_image\":\"p2.jpg\",\"product_quantity\":\"2\",\"product_size_name\":\"XL\",\"product_color_name\":\"Blue\",\"product_selling_price\":\"1\"}]', '2023-03-19 12:47:39.000000', '0000-00-00 00:00:00.000000', '0000-00-00 00:00:00.000000', 0),
+(4, '47ed4c08-c67a-11ed-b1e2-98460a99789a', '988f64b4-bc4a-11ed-bb06-98460a99789a', '', '', '', 0, '', 0, '', 0, 0, 0, '', 0, '', '', '', '', '', '', '', 0, '', '', 0, 0, 0, '', 1, 444126, '', '[{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"616eedc2-be77-11ed-b750-98460a99789a\",\"product_name\":\"Black Shirt Round Coller\",\"product_image\":\"p2.jpg\",\"product_quantity\":\"2\",\"product_size_name\":\"XL\",\"product_color_name\":\"Blue\",\"product_selling_price\":\"1\"}]', '2023-03-19 12:50:01.000000', '0000-00-00 00:00:00.000000', '0000-00-00 00:00:00.000000', 0),
+(5, '1abcff16-c699-11ed-b1e2-98460a99789a', '988f64b4-bc4a-11ed-bb06-98460a99789a', '', '', '', 0, '', 0, '', 0, 0, 0, '', 0, '', '', '', '', '', '', '', 0, '', '', 0, 0, 2, 'pay_LTWWe08ZQPBfwQ', 0, 0, '', '[{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"616eedc2-be77-11ed-b750-98460a99789a\",\"product_name\":\"Black Shirt Round Coller\",\"product_image\":\"p2.jpg\",\"product_quantity\":\"2\",\"product_size_name\":\"XL\",\"product_color_name\":\"Blue\",\"product_selling_price\":\"1\"}]', '2023-03-19 16:30:39.000000', '0000-00-00 00:00:00.000000', '0000-00-00 00:00:00.000000', 0),
+(6, '9c172d0e-c74b-11ed-85e9-98460a99789a', '988f64b4-bc4a-11ed-bb06-98460a99789a', '', '', '', 0, '', 0, '', 0, 0, 0, '', 0, '', '', '', '', '', '', '', 0, '', '', 0, 0, 0, '', 1, 134575, '', '[{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"616eedc2-be77-11ed-b750-98460a99789a\",\"product_name\":\"Black Shirt Round Coller\",\"product_image\":\"p2.jpg\",\"product_quantity\":\"2\",\"product_size_name\":\"XL\",\"product_color_name\":\"Blue\",\"product_selling_price\":\"1\"},{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"c6b04c52-c256-11ed-bf9a-98460a99789a\",\"product_name\":\"White T-Shirt\",\"product_image\":\"0_4.jpg\",\"product_quantity\":\"1\",\"product_size_name\":\"M\",\"product_color_name\":\"Yellow\",\"product_selling_price\":\"1\"}]', '2023-03-20 13:48:27.000000', '0000-00-00 00:00:00.000000', '0000-00-00 00:00:00.000000', 0),
+(7, 'b0088abe-c751-11ed-85e9-98460a99789a', '988f64b4-bc4a-11ed-bb06-98460a99789a', '', '', '', 0, '', 0, '', 0, 0, 0, '', 0, '', '', '', '', '', '', '', 0, '', '', 0, 0, 0, '', 1, 235752, '', '[{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"616eedc2-be77-11ed-b750-98460a99789a\",\"product_name\":\"Black Shirt Round Coller\",\"product_image\":\"p2.jpg\",\"product_quantity\":\"2\",\"product_size_name\":\"XL\",\"product_color_name\":\"Blue\",\"product_selling_price\":\"1\"},{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"c6b04c52-c256-11ed-bf9a-98460a99789a\",\"product_name\":\"White T-Shirt\",\"product_image\":\"0_4.jpg\",\"product_quantity\":\"1\",\"product_size_name\":\"M\",\"product_color_name\":\"Yellow\",\"product_selling_price\":\"1\"}]', '2023-03-20 14:31:57.000000', '0000-00-00 00:00:00.000000', '0000-00-00 00:00:00.000000', 0),
+(8, 'fda7a70a-c751-11ed-85e9-98460a99789a', '988f64b4-bc4a-11ed-bb06-98460a99789a', '', '', '', 0, '', 0, '', 0, 0, 0, '', 0, '', '', '', '', '', '', '', 0, '', '', 0, 0, 0, '', 1, 233239, '', '[{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"616eedc2-be77-11ed-b750-98460a99789a\",\"product_name\":\"Black Shirt Round Coller\",\"product_image\":\"p2.jpg\",\"product_quantity\":\"2\",\"product_size_name\":\"XL\",\"product_color_name\":\"Blue\",\"product_selling_price\":\"1\"},{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"c6b04c52-c256-11ed-bf9a-98460a99789a\",\"product_name\":\"White T-Shirt\",\"product_image\":\"0_4.jpg\",\"product_quantity\":\"1\",\"product_size_name\":\"M\",\"product_color_name\":\"Yellow\",\"product_selling_price\":\"1\"}]', '2023-03-20 14:34:08.000000', '0000-00-00 00:00:00.000000', '0000-00-00 00:00:00.000000', 0),
+(9, 'b2f09b76-c752-11ed-85e9-98460a99789a', '988f64b4-bc4a-11ed-bb06-98460a99789a', '', '', '', 0, '', 0, '', 0, 0, 0, '', 0, '', '', '', '', '', '', '', 0, '', '', 0, 0, 0, '', 1, 178340, '', '[{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"616eedc2-be77-11ed-b750-98460a99789a\",\"product_name\":\"Black Shirt Round Coller\",\"product_image\":\"p2.jpg\",\"product_quantity\":\"2\",\"product_size_name\":\"XL\",\"product_color_name\":\"Blue\",\"product_selling_price\":\"1\"},{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"c6b04c52-c256-11ed-bf9a-98460a99789a\",\"product_name\":\"White T-Shirt\",\"product_image\":\"0_4.jpg\",\"product_quantity\":\"1\",\"product_size_name\":\"M\",\"product_color_name\":\"Yellow\",\"product_selling_price\":\"1\"}]', '2023-03-20 14:39:12.000000', '0000-00-00 00:00:00.000000', '0000-00-00 00:00:00.000000', 0),
+(10, 'b75161dc-c752-11ed-85e9-98460a99789a', '988f64b4-bc4a-11ed-bb06-98460a99789a', '', '', '', 0, '', 0, '', 0, 0, 0, '', 0, '', '', '', '', '', '', '', 0, '', '', 0, 0, 0, '', 1, 310988, '', '[{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"616eedc2-be77-11ed-b750-98460a99789a\",\"product_name\":\"Black Shirt Round Coller\",\"product_image\":\"p2.jpg\",\"product_quantity\":\"2\",\"product_size_name\":\"XL\",\"product_color_name\":\"Blue\",\"product_selling_price\":\"1\"},{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"c6b04c52-c256-11ed-bf9a-98460a99789a\",\"product_name\":\"White T-Shirt\",\"product_image\":\"0_4.jpg\",\"product_quantity\":\"1\",\"product_size_name\":\"M\",\"product_color_name\":\"Yellow\",\"product_selling_price\":\"1\"}]', '2023-03-20 14:39:19.000000', '0000-00-00 00:00:00.000000', '0000-00-00 00:00:00.000000', 0),
+(11, '3bb44b38-c75d-11ed-85e9-98460a99789a', '988f64b4-bc4a-11ed-bb06-98460a99789a', '', '', '', 0, '', 0, '', 0, 0, 0, '', 0, '', '', '', '', '', '', '', 0, '', '', 0, 0, 0, '', 1, 738162, '', '[{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"616eedc2-be77-11ed-b750-98460a99789a\",\"product_name\":\"Black Shirt Round Coller\",\"product_image\":\"p2.jpg\",\"product_quantity\":\"2\",\"product_size_name\":\"XL\",\"product_color_name\":\"Blue\",\"product_selling_price\":\"1\"},{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"c6b04c52-c256-11ed-bf9a-98460a99789a\",\"product_name\":\"White T-Shirt\",\"product_image\":\"0_4.jpg\",\"product_quantity\":\"1\",\"product_size_name\":\"M\",\"product_color_name\":\"Yellow\",\"product_selling_price\":\"1\"}]', '2023-03-20 15:54:36.000000', '0000-00-00 00:00:00.000000', '0000-00-00 00:00:00.000000', 0),
+(12, '29de1dba-c75f-11ed-85e9-98460a99789a', '988f64b4-bc4a-11ed-bb06-98460a99789a', '', '', '', 0, '', 0, '', 0, 0, 0, '', 0, '', '', '', '', '', '', '', 0, '', '', 0, 0, 0, '', 1, 163512, '', '[{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"616eedc2-be77-11ed-b750-98460a99789a\",\"product_name\":\"Black Shirt Round Coller\",\"product_image\":\"p2.jpg\",\"product_quantity\":\"2\",\"product_size_name\":\"XL\",\"product_color_name\":\"Blue\",\"product_selling_price\":\"1\"},{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"c6b04c52-c256-11ed-bf9a-98460a99789a\",\"product_name\":\"White T-Shirt\",\"product_image\":\"0_4.jpg\",\"product_quantity\":\"1\",\"product_size_name\":\"M\",\"product_color_name\":\"Yellow\",\"product_selling_price\":\"1\"}]', '2023-03-20 16:08:25.000000', '0000-00-00 00:00:00.000000', '0000-00-00 00:00:00.000000', 0),
+(13, 'd7da6012-c7ab-11ed-b168-98460a99789a', '988f64b4-bc4a-11ed-bb06-98460a99789a', '', '', '', 0, '', 0, '', 0, 0, 0, '', 0, '', '', '', '', '', '', '', 0, '', '', 0, 0, 0, '', 1, 320274, '', '[{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"616eedc2-be77-11ed-b750-98460a99789a\",\"product_name\":\"Black Shirt Round Coller\",\"product_image\":\"p2.jpg\",\"product_quantity\":\"2\",\"product_size_name\":\"XL\",\"product_color_name\":\"Blue\",\"product_selling_price\":\"1\"},{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"c6b04c52-c256-11ed-bf9a-98460a99789a\",\"product_name\":\"White T-Shirt\",\"product_image\":\"0_4.jpg\",\"product_quantity\":\"1\",\"product_size_name\":\"M\",\"product_color_name\":\"Yellow\",\"product_selling_price\":\"1\"}]', '2023-03-21 01:17:19.000000', '0000-00-00 00:00:00.000000', '0000-00-00 00:00:00.000000', 0);
 
 -- --------------------------------------------------------
 
@@ -370,13 +427,14 @@ INSERT INTO `tbl_product_images` (`image_id`, `product_id`, `product_uuid`, `var
 CREATE TABLE `tbl_product_variation` (
   `variant_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
+  `variation_uuid` varchar(255) NOT NULL,
   `product_uuid` varchar(255) NOT NULL,
   `product_size` varchar(255) NOT NULL,
   `product_size_name` varchar(255) NOT NULL,
   `product_color` varchar(255) NOT NULL,
   `product_color_name` varchar(255) NOT NULL,
-  `product_mrp` float(20,2) NOT NULL,
-  `product_selling_price` float(20,2) NOT NULL,
+  `product_mrp` int(6) NOT NULL,
+  `product_selling_price` int(6) NOT NULL,
   `discount_percentage` int(2) NOT NULL,
   `product_quantity` int(11) NOT NULL,
   `created_at` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
@@ -389,9 +447,11 @@ CREATE TABLE `tbl_product_variation` (
 -- Dumping data for table `tbl_product_variation`
 --
 
-INSERT INTO `tbl_product_variation` (`variant_id`, `product_id`, `product_uuid`, `product_size`, `product_size_name`, `product_color`, `product_color_name`, `product_mrp`, `product_selling_price`, `discount_percentage`, `product_quantity`, `created_at`, `isDeleted`, `isActive`, `status`) VALUES
-(1, 1, '616eedc2-be77-11ed-b750-98460a99789a', '4', 'XL', '3', 'Blue', 4.00, 2.00, 50, 12, '2023-03-09 18:17:32.928995', 0, 1, 1),
-(2, 2, 'c6b04c52-c256-11ed-bf9a-98460a99789a', '2', 'M', '5', 'Yellow', 2.00, 1.00, 50, 12, '2023-03-15 07:38:38.700468', 0, 1, 1);
+INSERT INTO `tbl_product_variation` (`variant_id`, `product_id`, `variation_uuid`, `product_uuid`, `product_size`, `product_size_name`, `product_color`, `product_color_name`, `product_mrp`, `product_selling_price`, `discount_percentage`, `product_quantity`, `created_at`, `isDeleted`, `isActive`, `status`) VALUES
+(1, 1, '', '616eedc2-be77-11ed-b750-98460a99789a', '4', 'XL', '3', 'Blue', 4, 2, 50, 12, '2023-03-09 18:17:32.928995', 0, 1, 1),
+(2, 2, '', 'c6b04c52-c256-11ed-bf9a-98460a99789a', '4', 'XL', '5', 'Yellow', 2, 2, 78, 12, '2023-03-23 09:47:04.117884', 0, 1, 1),
+(3, 2, '', 'c6b04c52-c256-11ed-bf9a-98460a99789a', '4', 'XL', '5', 'Yellow', 4, 2, 78, 12, '2023-03-23 09:47:04.117884', 0, 1, 1),
+(4, 2, '55f8da98-c95d-11ed-8f69-98460a99789a', 'c6b04c52-c256-11ed-bf9a-98460a99789a', '4', 'XL', '2', 'Black', 22, 266, 78, 12, '2023-03-23 11:34:33.823740', 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -417,6 +477,17 @@ CREATE TABLE `tbl_rating_reviews` (
   `modifiedAt` datetime(6) NOT NULL,
   `deletedAt` datetime(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_rating_reviews`
+--
+
+INSERT INTO `tbl_rating_reviews` (`rating_id`, `rating_uuid`, `product_uuid`, `user_uuid`, `user_name`, `rating_number`, `rating_title`, `rating_comment`, `isVerifiedBuyer`, `admin_reply`, `showAdminReply`, `isActive`, `status`, `createdAt`, `modifiedAt`, `deletedAt`) VALUES
+(1, '8c3b60ee-c719-11ed-9957-98460a99789a', 'c6b04c52-c256-11ed-bf9a-98460a99789a', '', '', 4, 'Wow awsm Product', 'good fitting', 0, '', 1, 1, 1, '2023-03-21 06:22:20.593286', '0000-00-00 00:00:00.000000', '0000-00-00 00:00:00.000000'),
+(2, '15d6acfc-c7b8-11ed-b168-98460a99789a', 'c6b04c52-c256-11ed-bf9a-98460a99789a', '988f64b4-bc4a-11ed-bb06-98460a99789a', '988f64b4-bc4a-11ed-bb06-98460a99789a', 3, 'Nice Product', 'Big enough for a weekend trip.', 0, '', 1, 1, 1, '2023-03-21 07:14:57.265228', '0000-00-00 00:00:00.000000', '0000-00-00 00:00:00.000000'),
+(3, '6bd2330c-c7bc-11ed-b168-98460a99789a', 'c6b04c52-c256-11ed-bf9a-98460a99789a', '988f64b4-bc4a-11ed-bb06-98460a99789a', 'Jack', 1, 'Poor Product', 'not buy', 1, '', 1, 1, 1, '2023-03-21 09:04:14.567260', '0000-00-00 00:00:00.000000', '0000-00-00 00:00:00.000000'),
+(4, '917b79bc-c7c9-11ed-b1fa-98460a99789a', 'c6b04c52-c256-11ed-bf9a-98460a99789a', '988f64b4-bc4a-11ed-bb06-98460a99789a', 'Jack', 5, 'Amazing color', 'Testing delivery status', 1, '', 1, 1, 1, '2023-03-21 09:20:06.147541', '0000-00-00 00:00:00.000000', '0000-00-00 00:00:00.000000'),
+(5, '949f5a9c-c7cd-11ed-b1fa-98460a99789a', 'c6b04c52-c256-11ed-bf9a-98460a99789a', 'None', 'User', 5, 'unknown user', 'sdajsdadas', 0, '', 1, 1, 1, '2023-03-21 09:48:49.404628', '0000-00-00 00:00:00.000000', '0000-00-00 00:00:00.000000');
 
 -- --------------------------------------------------------
 
@@ -460,18 +531,16 @@ CREATE TABLE `tbl_shipping_orders` (
   `shipping_id` int(11) NOT NULL,
   `shipping_uuid` varchar(255) NOT NULL,
   `order_uuid` varchar(255) NOT NULL,
+  `product_uuid` varchar(255) NOT NULL,
   `user_uuid` varchar(255) NOT NULL,
-  `product_json` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`product_json`)),
+  `payment_id` varchar(255) NOT NULL,
   `payment_mode` varchar(10) NOT NULL,
   `payment_status` int(5) NOT NULL,
   `shipping_status` int(2) NOT NULL,
-  `conformation_code` int(8) NOT NULL,
-  `payment_id` varchar(255) NOT NULL,
-  `shipping_address` varchar(255) NOT NULL,
-  `user_email` varchar(255) NOT NULL,
-  `reciver_phone_no` varchar(25) NOT NULL,
-  `order_datetime` datetime(6) NOT NULL,
   `transpoter_name` varchar(25) NOT NULL,
+  `conformation_code` int(8) NOT NULL,
+  `ordered_datetime` datetime(6) NOT NULL,
+  `product_json` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`product_json`)),
   `status` int(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -479,12 +548,16 @@ CREATE TABLE `tbl_shipping_orders` (
 -- Dumping data for table `tbl_shipping_orders`
 --
 
-INSERT INTO `tbl_shipping_orders` (`shipping_id`, `shipping_uuid`, `order_uuid`, `user_uuid`, `product_json`, `payment_mode`, `payment_status`, `shipping_status`, `conformation_code`, `payment_id`, `shipping_address`, `user_email`, `reciver_phone_no`, `order_datetime`, `transpoter_name`, `status`) VALUES
-(1, '93675302-c5c3-11ed-978f-98460a99789a', 'fbc59392-c586-11ed-978f-98460a99789a', '988f64b4-bc4a-11ed-bb06-98460a99789a', '[{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"c6b04c52-c256-11ed-bf9a-98460a99789a\",\"product_name\":\"White T-Shirt\",\"product_image\":\"0_4.jpg\",\"product_quantity\":\"2\",\"product_size_name\":\"M\",\"product_color_name\":\"Yellow\",\"product_selling_price\":\"1\"}]', '1', 0, 0, 0, '', '', '', '', '0000-00-00 00:00:00.000000', '', 1),
-(2, 'fe1e2c3e-c627-11ed-95a8-98460a99789a', 'fe1d9044-c627-11ed-95a8-98460a99789a', '988f64b4-bc4a-11ed-bb06-98460a99789a', '[{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"c6b04c52-c256-11ed-bf9a-98460a99789a\",\"product_name\":\"White T-Shirt\",\"product_image\":\"0_4.jpg\",\"product_quantity\":\"2\",\"product_size_name\":\"M\",\"product_color_name\":\"Yellow\",\"product_selling_price\":\"1\"}]', '1', 0, 1, 94522, '', '', '', '', '0000-00-00 00:00:00.000000', '', 1),
-(3, '6e4dfa56-c62e-11ed-95a8-98460a99789a', 'fe1d9044-c627-11ed-95a8-98460a99789a', '988f64b4-bc4a-11ed-bb06-98460a99789a', '[{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"c6b04c52-c256-11ed-bf9a-98460a99789a\",\"product_name\":\"White T-Shirt\",\"product_image\":\"0_4.jpg\",\"product_quantity\":\"2\",\"product_size_name\":\"M\",\"product_color_name\":\"Yellow\",\"product_selling_price\":\"1\"}]', '1', 0, 0, 94522, '', '', '', '', '0000-00-00 00:00:00.000000', '', 1),
-(4, 'f3421d64-c679-11ed-b1e2-98460a99789a', 'fe1d9044-c627-11ed-95a8-98460a99789a', '988f64b4-bc4a-11ed-bb06-98460a99789a', '[{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"c6b04c52-c256-11ed-bf9a-98460a99789a\",\"product_name\":\"White T-Shirt\",\"product_image\":\"0_4.jpg\",\"product_quantity\":\"2\",\"product_size_name\":\"M\",\"product_color_name\":\"Yellow\",\"product_selling_price\":\"1\"}]', '1', 0, 0, 94522, '', '', '', '', '0000-00-00 00:00:00.000000', '', 1),
-(5, '47edbb5c-c67a-11ed-b1e2-98460a99789a', 'fe1d9044-c627-11ed-95a8-98460a99789a', '988f64b4-bc4a-11ed-bb06-98460a99789a', '[{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"c6b04c52-c256-11ed-bf9a-98460a99789a\",\"product_name\":\"White T-Shirt\",\"product_image\":\"0_4.jpg\",\"product_quantity\":\"2\",\"product_size_name\":\"M\",\"product_color_name\":\"Yellow\",\"product_selling_price\":\"1\"}]', '1', 0, 1, 444126, '', '', '', '', '0000-00-00 00:00:00.000000', '', 1);
+INSERT INTO `tbl_shipping_orders` (`shipping_id`, `shipping_uuid`, `order_uuid`, `product_uuid`, `user_uuid`, `payment_id`, `payment_mode`, `payment_status`, `shipping_status`, `transpoter_name`, `conformation_code`, `ordered_datetime`, `product_json`, `status`) VALUES
+(1, '93675302-c5c3-11ed-978f-98460a99789a', 'fbc59392-c586-11ed-978f-98460a99789a', '', '988f64b4-bc4a-11ed-bb06-98460a99789a', '', '1', 0, 0, '', 0, '0000-00-00 00:00:00.000000', '[{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"c6b04c52-c256-11ed-bf9a-98460a99789a\",\"product_name\":\"White T-Shirt\",\"product_image\":\"0_4.jpg\",\"product_quantity\":\"2\",\"product_size_name\":\"M\",\"product_color_name\":\"Yellow\",\"product_selling_price\":\"1\"}]', 1),
+(2, 'fe1e2c3e-c627-11ed-95a8-98460a99789a', 'fe1d9044-c627-11ed-95a8-98460a99789a', '', '988f64b4-bc4a-11ed-bb06-98460a99789a', '', '1', 0, 1, '', 94522, '0000-00-00 00:00:00.000000', '[{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"c6b04c52-c256-11ed-bf9a-98460a99789a\",\"product_name\":\"White T-Shirt\",\"product_image\":\"0_4.jpg\",\"product_quantity\":\"2\",\"product_size_name\":\"M\",\"product_color_name\":\"Yellow\",\"product_selling_price\":\"1\"}]', 1),
+(3, '6e4dfa56-c62e-11ed-95a8-98460a99789a', 'fe1d9044-c627-11ed-95a8-98460a99789a', '', '988f64b4-bc4a-11ed-bb06-98460a99789a', '', '1', 0, 0, '', 94522, '0000-00-00 00:00:00.000000', '[{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"c6b04c52-c256-11ed-bf9a-98460a99789a\",\"product_name\":\"White T-Shirt\",\"product_image\":\"0_4.jpg\",\"product_quantity\":\"2\",\"product_size_name\":\"M\",\"product_color_name\":\"Yellow\",\"product_selling_price\":\"1\"}]', 1),
+(4, 'f3421d64-c679-11ed-b1e2-98460a99789a', 'fe1d9044-c627-11ed-95a8-98460a99789a', '', '988f64b4-bc4a-11ed-bb06-98460a99789a', '', '1', 0, 0, '', 94522, '0000-00-00 00:00:00.000000', '[{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"c6b04c52-c256-11ed-bf9a-98460a99789a\",\"product_name\":\"White T-Shirt\",\"product_image\":\"0_4.jpg\",\"product_quantity\":\"2\",\"product_size_name\":\"M\",\"product_color_name\":\"Yellow\",\"product_selling_price\":\"1\"}]', 1),
+(5, '47edbb5c-c67a-11ed-b1e2-98460a99789a', 'fe1d9044-c627-11ed-95a8-98460a99789a', '', '988f64b4-bc4a-11ed-bb06-98460a99789a', '', '1', 0, 1, '', 444126, '0000-00-00 00:00:00.000000', '[{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"c6b04c52-c256-11ed-bf9a-98460a99789a\",\"product_name\":\"White T-Shirt\",\"product_image\":\"0_4.jpg\",\"product_quantity\":\"2\",\"product_size_name\":\"M\",\"product_color_name\":\"Yellow\",\"product_selling_price\":\"1\"}]', 1),
+(6, '9c17a6c6-c74b-11ed-85e9-98460a99789a', 'fe1d9044-c627-11ed-95a8-98460a99789a', '', '988f64b4-bc4a-11ed-bb06-98460a99789a', '', '1', 0, 0, '', 134575, '0000-00-00 00:00:00.000000', '[{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"c6b04c52-c256-11ed-bf9a-98460a99789a\",\"product_name\":\"White T-Shirt\",\"product_image\":\"0_4.jpg\",\"product_quantity\":\"2\",\"product_size_name\":\"M\",\"product_color_name\":\"Yellow\",\"product_selling_price\":\"1\"}]', 1),
+(7, '3bb4c22a-c75d-11ed-85e9-98460a99789a', 'fe1d9044-c627-11ed-95a8-98460a99789a', '', '988f64b4-bc4a-11ed-bb06-98460a99789a', '', '1', 0, 0, '', 738162, '0000-00-00 00:00:00.000000', '[{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"c6b04c52-c256-11ed-bf9a-98460a99789a\",\"product_name\":\"White T-Shirt\",\"product_image\":\"0_4.jpg\",\"product_quantity\":\"2\",\"product_size_name\":\"M\",\"product_color_name\":\"Yellow\",\"product_selling_price\":\"1\"}]', 1),
+(8, '29de9f24-c75f-11ed-85e9-98460a99789a', '29de1dba-c75f-11ed-85e9-98460a99789a', '', '988f64b4-bc4a-11ed-bb06-98460a99789a', '', '1', 0, 0, '', 163512, '0000-00-00 00:00:00.000000', '[{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"616eedc2-be77-11ed-b750-98460a99789a\",\"product_name\":\"Black Shirt Round Coller\",\"product_image\":\"p2.jpg\",\"product_quantity\":\"2\",\"product_size_name\":\"XL\",\"product_color_name\":\"Blue\",\"product_selling_price\":\"1\"},{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"c6b04c52-c256-11ed-bf9a-98460a99789a\",\"product_name\":\"White T-Shirt\",\"product_image\":\"0_4.jpg\",\"product_quantity\":\"1\",\"product_size_name\":\"M\",\"product_color_name\":\"Yellow\",\"product_selling_price\":\"1\"}]', 1),
+(9, 'd7dabf4e-c7ab-11ed-b168-98460a99789a', 'd7da6012-c7ab-11ed-b168-98460a99789a', '', '988f64b4-bc4a-11ed-bb06-98460a99789a', '', '1', 0, 1, '', 320274, '0000-00-00 00:00:00.000000', '[{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"616eedc2-be77-11ed-b750-98460a99789a\",\"product_name\":\"Black Shirt Round Coller\",\"product_image\":\"p2.jpg\",\"product_quantity\":\"2\",\"product_size_name\":\"XL\",\"product_color_name\":\"Blue\",\"product_selling_price\":\"1\"},{\"user_uuid\":\"988f64b4-bc4a-11ed-bb06-98460a99789a\",\"product_uuid\":\"c6b04c52-c256-11ed-bf9a-98460a99789a\",\"product_name\":\"White T-Shirt\",\"product_image\":\"0_4.jpg\",\"product_quantity\":\"1\",\"product_size_name\":\"M\",\"product_color_name\":\"Yellow\",\"product_selling_price\":\"1\"}]', 1);
 
 -- --------------------------------------------------------
 
@@ -565,6 +638,12 @@ ALTER TABLE `tbl_main_product`
   ADD UNIQUE KEY `slug_product` (`slug_product`);
 
 --
+-- Indexes for table `tbl_mapping_orderedProducts_user`
+--
+ALTER TABLE `tbl_mapping_orderedProducts_user`
+  ADD PRIMARY KEY (`mapping_id`);
+
+--
 -- Indexes for table `tbl_orders`
 --
 ALTER TABLE `tbl_orders`
@@ -626,7 +705,7 @@ ALTER TABLE `tbl_brands`
 -- AUTO_INCREMENT for table `tbl_cart`
 --
 ALTER TABLE `tbl_cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tbl_categories`
@@ -665,10 +744,16 @@ ALTER TABLE `tbl_main_product`
   MODIFY `product_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `tbl_mapping_orderedProducts_user`
+--
+ALTER TABLE `tbl_mapping_orderedProducts_user`
+  MODIFY `mapping_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `tbl_orders`
 --
 ALTER TABLE `tbl_orders`
-  MODIFY `order_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `order_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `tbl_product_colors`
@@ -686,13 +771,13 @@ ALTER TABLE `tbl_product_images`
 -- AUTO_INCREMENT for table `tbl_product_variation`
 --
 ALTER TABLE `tbl_product_variation`
-  MODIFY `variant_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `variant_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_rating_reviews`
 --
 ALTER TABLE `tbl_rating_reviews`
-  MODIFY `rating_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `rating_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tbl_registration`
@@ -704,7 +789,7 @@ ALTER TABLE `tbl_registration`
 -- AUTO_INCREMENT for table `tbl_shipping_orders`
 --
 ALTER TABLE `tbl_shipping_orders`
-  MODIFY `shipping_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `shipping_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tbl_sizes`

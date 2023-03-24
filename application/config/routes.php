@@ -77,6 +77,9 @@ $route['submit-edited-addr'] = 'EStore/EStore_Controller/submitEditedAddress';
 
 $route['product/(:any)'] = 'EStore/EStore_Controller/showProductDetails/$1';
 
+//Customer Orders view page
+$route['orders'] = 'EStore/EStore_Controller/customer_orders';
+
 $route['thanks']= 'EStore/EStore_Controller/thankYouPage';
 
 //Rating and reviews
@@ -123,4 +126,10 @@ $route['update-product/(:any)'] = 'Admin/Admin_Controller/update_product_with_va
 //For Product variation
 $route['update-product/(:any)/(:any)'] = 'Admin/Admin_Controller/update_product_with_variation/$1/$2';
 
+
+/* 
+    AJAX - Routes (indirect call)
+    
+    pay_now_cod() | eStore/EStore_Controller/onlinePayment_ajax - shipping_details(page)
+*/ 
 
