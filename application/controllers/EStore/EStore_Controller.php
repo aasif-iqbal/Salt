@@ -389,13 +389,27 @@ private function generateRandomNumber(){
 
 public function cashOnDelivery_ajax()
 {
-	$data['productInfo_json'] = $this->input->post('productInfo_json');
-	$data['user_uuid'] = $this->input->post('user_uuid');
-	$data['transaction_datetime'] = date('Y-m-d H:i:s');
-	$data['transaction_status'] = '1';
-	$data['conformation_code'] = $this->generateRandomNumber();
+	$data['productInfo_json'] = $this->input->post('productInfo_json');	
+	
+	$cart_items_selectedByUser = json_decode($data['productInfo_json'], true);
+	
+	foreach ($cart_items_selectedByUser as $item) {
+		$data['user_uuid'] = $this->input->post('user_uuid');
+		$data['transaction_datetime'] = date('Y-m-d H:i:s');
+		$data['transaction_status'] = '1';
+		$data['conformation_code'] = $this->generateRandomNumber();
+		//Inserting into table orders
+		$status =  $this->EStore_model->saveCashOnDelivery($data);
+	}
+	
 
-	$status =  $this->EStore_model->saveCashOnDelivery($data);
+	// $data['user_uuid'] = $this->input->post('user_uuid');
+	// $data['transaction_datetime'] = date('Y-m-d H:i:s');
+	// $data['transaction_status'] = '1';
+	// $data['conformation_code'] = $this->generateRandomNumber();		 
+
+	// $status =  $this->EStore_model->saveCashOnDelivery($data);
+	
 	//After Payment is made, Info in send to order_shipping tbl
 	if($status){
 		$user_uuid = $data['user_uuid'];
@@ -416,7 +430,7 @@ public function cashOnDelivery_ajax()
 		$json_string = $order_info[0]->productInfo_json;
 		// Decode the JSON string to a PHP array
 		$cart_items = json_decode($json_string, true);
-
+		// var_dump($cart_items);die();
 		// Loop through the array to process each cart item
 		foreach ($cart_items as $item) {
 			

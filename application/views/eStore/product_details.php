@@ -68,6 +68,15 @@ figure:hover+span {
   background-color: <?php echo $color_variation->hex_code; ?>;
 }
 
+/*  */
+.offcanvas-end {
+    top: 0;
+    right: 0;
+    width: 800px!important;
+    border-left: 1px solid rgba(0,0,0,.2);
+    transform: translateX(100%);
+}
+
 </style>
 
 <?php 
@@ -202,6 +211,52 @@ echo html_entity_decode($peso);
 
   </div>
   <?php endforeach; } ?>
+</div>
+<!-- offcanvas for size-guide -->
+<a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+  Link with href
+</a>
+ 
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div>
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td colspan="2">Larry the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
+    </div>
+    
+  </div>
 </div>
 
 <!-- static -->

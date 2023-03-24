@@ -50,9 +50,9 @@
       <td><?= $row['payment_status']; ?></td>
       <td><?= $value; ?></td>
       <td><?= $row['conformation_code']; ?></td>
-      <td><?= $row['shipping_address']; ?></td>
-      <td><?= $row['order_datetime']; ?></td>
-      <td><?= $row['reciver_phone_no']; ?></td>      
+      <td><?= isset($row['shipping_address'])?$row['shipping_address']:'--'; ?></td>
+      <td><?= isset($row['order_datetime'])?$row['order_datetime']:'--'; ?></td>
+      <td><?= isset($row['reciver_phone_no'])?$row['reciver_phone_no']:'--'; ?></td>      
       <td>
         <!-- <button type="button" class="btn btn-info">Edit</button> -->
         <a class="btn btn-info" href="<?=  base_url('status'); ?>" role="button">Edit</a>

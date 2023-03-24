@@ -13,7 +13,10 @@
     // $userLoginData = $this->session->userdata('userLoginData');
     // var_dump($customerInfo[0]);
     ?>
-    <!-- </?=  print_r(json_encode($customerCartItems)); ?> -->
+    <?php  
+    // echo("<pre>");
+    // print_r(($customerCartItems)); 
+    ?>
 
     <div class="container">
         <div class="row mt-4">
@@ -131,6 +134,9 @@
             // console.log(typeof(projectInfo_Json));
             projectInfo_Json = (JSON.stringify(projectInfo_Json));
             
+            // var customerCartItems = `</?= $customerCartItems; ?>`;
+            // console.log(customerCartItems);
+
             var product_name = document.getElementById('product_name');
             let product_quantity = document.getElementById('product_quantity');
             let total_amount = document.getElementById('total_amount');

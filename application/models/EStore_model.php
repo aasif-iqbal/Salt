@@ -469,7 +469,7 @@ public function fetch_cart_items_by_user_json($user_uuid)
 
 public function saveCashOnDelivery($data)
 {
-    // die();
+
         $this->db->set('order_uuid','UUID()', FALSE);
 
         if($data){            
