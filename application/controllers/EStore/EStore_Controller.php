@@ -128,6 +128,7 @@ class EStore_Controller extends CI_Controller {
 	public function logout(){
 		//Unset session
 		$this->session->unset_userdata('userLoginData');
+		$this->session->unset_userdata('cart_value');
 		
 		// $this->load->view('eStore/libs');
 		// $this->load->view('Welcome');
@@ -481,11 +482,16 @@ public function thankYouPage()
 
 public function customer_orders()
 {
+	$userLoginData = $this->session->userdata('userLoginData'); 
+	$user_uuid = $userLoginData['user_uuid'];
+
 	$data['nav_categories'] = $this->EStore_model->fetch_categories_for_parent();
+
+	$data['customer_orders_list'] = $this->EStore_model->fetch_order_list_for_Customer($user_uuid);
 
 	$this->load->view('eStore/libs');
 	$this->load->view('eStore/nav', $data);
-	$this->load->view('EStore/customer_orders');
+	$this->load->view('EStore/customer_orders',$data);
 	$this->load->view('eStore/footer');	
 }
 // ============================== End Shipping_details ==================================
