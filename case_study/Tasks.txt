@@ -150,5 +150,35 @@ www.beyours.in - sample website
 -----------------------------------------------------------------------------------
 order_tbl
 
-# ADD OFFCANVAS to size-chart
+# ADD OFFCANVAS to size-chart (DONE)
 
+# Product Cancel Possiablity
+1. When user buy product and Cancel it within hours (change his mind)
+    a. if (product is in COD) then ______
+    b. if he/she pays online then ______
+
+Solution : To avoid the above case, User(customer) can Cancel it only at doorsteps(ie. after reciveing it)
+
+level: complex
+2. When User Buy Product and Want to exchange it with different COLOR or Size
+        (Total Amount he paid for the product) + or - (new product) = Final Amount
+
+3. When User Buy Product and Want Money back from website. (REFUND AMOUNT)
+
+ ========================   ChatGPT  =========================
+ There are several possible cases of product returns in an e-commerce website, including:
+
+1. Wrong item delivered: If the customer receives a product that is different from what they ordered, they may return it for the correct item.
+
+2. Damaged or defective product: If the product is received in a damaged or defective condition, the customer may return it for a refund or a replacement.
+
+3. Size or fit issues: If the size or fit of the product is not suitable for the customer, they may return it for a different size or a refund.
+
+4. Change of mind: If the customer changes their mind about the purchase, they may return the product for a refund or exchange, subject to the seller's return policy.
+
+5. Late delivery: If the product is not delivered within the promised timeframe, the customer may choose to return it.
+
+6. Fraudulent activity: In rare cases, customers may try to return products that they did not purchase or return items after they have used them.
+
+It is important for e-commerce websites to have clear and transparent return policies that address these various scenarios to ensure customer satisfaction and protect the interests of the seller as well.
+===========================================   ChatGPT  ====================================

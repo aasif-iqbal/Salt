@@ -494,6 +494,20 @@ public function customer_orders()
 	$this->load->view('EStore/customer_orders',$data);
 	$this->load->view('eStore/footer');	
 }
+
+public function customerOrderCancellation()
+{
+	$userLoginData = $this->session->userdata('userLoginData'); 
+	$user_uuid = $userLoginData['user_uuid'];
+
+	$data['nav_categories'] = $this->EStore_model->fetch_categories_for_parent();
+
+
+	$this->load->view('eStore/libs');
+	$this->load->view('eStore/nav', $data);
+	$this->load->view('EStore/customer_order_cancellation');
+	$this->load->view('eStore/footer');	
+}
 // ============================== End Shipping_details ==================================
 
 // ==============================

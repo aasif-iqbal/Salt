@@ -32,7 +32,7 @@
         <h5 class="card-title"><?= $list['product_name']; ?></h5>
         <p class="card-text">SIZE :<?= $list['product_size_name']; ?></p>
         <p class="card-text">COLOR :<?= $list['product_color_name']; ?></p>
-        <a class="btn btn-outline-danger btn-small" href="#" role="button">Cancel Order</a>
+        <a class="btn btn-outline-danger btn-small" id="cancel_order" href="<?= base_url('order-cancellation'); ?>" role="button">Cancel Order</a>
         
       </div>
     </div>
@@ -49,6 +49,17 @@
 </div>
 <?php endforeach;} ?>
     </div>
+    <script>
+// Get current date and time
+const now = new Date();
 
+// Calculate date and time 1 days from now
+// const fiveDaysFromNow = new Date(now.getTime() + (1 * 24 * 60 * 60 * 1000));
+const fiveDaysFromNow = new Date(now.getTime() + (1 * 1/12 * 60 * 60 * 1000)); //5min diff
+// Disable button if current date and time is equal to or greater than 1 days from now
+if (now >= fiveDaysFromNow) {
+    document.getElementById("cancel_order").style.visibility = 'hidden';
+}
+</script>
 </body>
 </html>

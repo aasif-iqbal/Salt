@@ -79,6 +79,7 @@ $route['product/(:any)'] = 'EStore/EStore_Controller/showProductDetails/$1';
 
 //Customer Orders view page
 $route['orders'] = 'EStore/EStore_Controller/customer_orders';
+$route['order-cancellation'] = 'EStore/EStore_Controller/customerOrderCancellation';
 
 $route['thanks']= 'EStore/EStore_Controller/thankYouPage';
 
