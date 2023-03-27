@@ -182,3 +182,31 @@ level: complex
 
 It is important for e-commerce websites to have clear and transparent return policies that address these various scenarios to ensure customer satisfaction and protect the interests of the seller as well.
 ===========================================   ChatGPT  ====================================
+
+GET Future date-time for hide cancellation button after 15days
+<?php
+// Set timezone to India
+date_default_timezone_set('Asia/Kolkata');
+// Get the current date and time
+$current_datetime = date('Y-m-d H:i:s');
+
+// Get the current date
+$current_date = date('Y-m-d');
+
+// Add 7 days to the current date to get the future date
+$future_date = date('Y-m-d', strtotime($current_date . ' +7 days'));
+
+// Add 7 days and 2 hours to the current datetime to get the future datetime
+//$future_datetime = date('Y-m-d H:i:s', strtotime($current_datetime . ' +7 days +2 hours'));
+
+// Get the day of the week for the future date
+$future_day = date('l', strtotime($future_date));
+  
+    echo "$current_datetime"; // 2023-03-27 14:45:42
+    echo "\n";
+	echo "$future_date"; // 2023-04-03
+	echo "\n";
+	echo "$future_day"; // Monday
+?>
+===========
+On app load first time, cart_session is not called/loaded 

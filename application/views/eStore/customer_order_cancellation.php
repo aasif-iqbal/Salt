@@ -118,15 +118,19 @@
             
             </div>
             <div class="mt-3 mb-3">
+                <label for="formGroupExampleInput" class="form-label">Account Holder Name</label>
+                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="eg. Ramesh Kumar">
+            </div>
+            <div class="mt-3 mb-3">
                 <label for="formGroupExampleInput" class="form-label">Account no.</label>
                 <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
             </div>
             <div class="mt-3 mb-3">
                 <label for="formGroupExampleInput2" class="form-label">Account no.</label>
-                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="">
+                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Re-Enter Account no.">
             </div>
             <div class="mt-3 mb-3">
-                <label for="formGroupExampleInput2" class="form-label">IFSC</label>
+                <label for="formGroupExampleInput2" class="form-label">IFSC Code</label>
                 <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="">
             </div>
             <div class="mt-3 mb-3">
@@ -178,6 +182,7 @@
                     <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="">
                 </div>
             </div> 
+            
             <div class="col-md g-2 mb-4 pl-2">  
                 <label for="floatingInputGrid">Address Type</label>
                     <div class="form-floating">
@@ -192,7 +197,8 @@
 
 
     </div>
-  </div>   
+  </div>  
+
         </div>
         <div class="d-grid gap-2 col-6 mx-auto">
    
