@@ -69,7 +69,7 @@
 ?>
 <nav class="navbar bg-secondary navbar-expand-xl  navbar-dark">
   <div class="container-fluid">
-  <a class="navbar-brand" href="">
+  <a class="navbar-brand" href="<?= base_url('/'); ?>">
         <img src="<?= base_url('assets/img/undraw_rocket.svg'); ?>" alt="" width="30" height="24" class="d-inline-block align-text-top">
         Salt
         </a>   
@@ -149,7 +149,7 @@
 
 
 
-<!-- 2nd nav -->
+    <!-- 2nd nav -->
     <nav class="navbar navbar-light bg-light" style="">
    
     <div class="container-fluid">
@@ -167,15 +167,15 @@
         <!-- This place is for search bar -->
 <?php 
   $userLoginData = $this->session->userdata('userLoginData');  
-  // var_dump($userLoginData);
+  // var_dump($userLoginData['user_uuid']);
   $cart_value = $this->session->userdata('cart_value');
   // echo('cart_value:');
   // print_r($cart_value);
 ?>
-        <!---------------------------------------- right icons --------------------------------->
+        <!-------------------- right icons ---------------------->
         <form class="d-flex">
         <div class="dropdown">
-            <!-- user profile -->
+            <!--- user profile --->
         <button class="btn btn-outline-dark me-2 border-0" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
         <i class="fa-regular fa-user"></i>
         </button>
@@ -195,10 +195,13 @@
         </div>
         <!-- wishlist -->
         <button class="btn btn-outline-dark me-2 border-0" type="submit"><i class="fa-regular fa-heart"></i></button>
+        
         <!-- shopping bag -->
         <?php $item_quantity = $this->session->userdata('item_quantity');
         // item_count
          ?>
+         <!-- user_uuid -->
+<input type="hidden" id="user_uuid" name="" value="<?= isset($userLoginData['user_uuid'])?$userLoginData['user_uuid']:'0';?>">
 
         <a class="btn btn-outline-dark border-0" 
           href="<?= base_url('cart');?>" role="button">
@@ -206,17 +209,20 @@
                   <?php 
                   
                   if(isset($userLoginData)){ ?>
-                  
+                  <!-- for login user -->
                   <span><i class="fa-solid fa-bag-shopping"></i>&nbsp;Bag(<?= isset($cart_value) ? $cart_value:'0'; ?>)</span>
+                  (<span id='cart_value'></span>)
                   <?php }else{?>
+                    <!-- for non-login user -->
                     <span><i class="fa-solid fa-bag-shopping"></i>&nbsp;Bag(<?= isset($item_count)?$item_count:'0'; ?>)</span>
                   <?php } ?>
-<!--
+        <!--
           </?php if($userLoginData != NULL){?>
             <span id="bag_db"><i class="fa-solid fa-bag-shopping"></i>&nbsp;Bag(</?= isset($item_count)?$item_count:'0'; ?>)</span>
           </?php }else{ ?>
             <span id="bag"><i class="fa-solid fa-bag-shopping"></i>&nbsp;Bag(</?= $cart_value; ?>)</span>
-          </?php } ?> -->
+          </?php } ?> 
+        -->
 
         </a>
       </form>
@@ -234,7 +240,39 @@
     //  alert(item_count); 
     // codeigniter3
     // https://stackoverflow.com/questions/28946105/how-to-create-dynamic-navigation-menu-select-from-database-using-codeigniter
-    </script>
+
+    var user_uuid_for_cart = document.getElementById('user_uuid');
+    // var user_uuid_for_cart = '</?= $this->session->userdata('userLoginData');  ?>';
+  $(document).ready(function() { 
+    console.log('id:',user_uuid_for_cart.value);
+    //var item_count = "</?= ($userLoginData); ?>";
+    // console.log('s',item_count);
+    if(user_uuid_for_cart != 'undefined'){
+    
+    $.ajax({
+            url:'<?= base_url('EStore/EStore_Controller/count_cart_items_ajax');  ?>',
+            type: 'POST',
+            data:{                              
+                user_uuid:user_uuid_for_cart.value,                
+            },
+            success:function(data, textStatus, jqXHR){              
+              var jsonData = JSON.parse(data);              
+              console.log(jsonData[0]['COUNT(product_quantity)']);  
+              document.getElementById('cart_value').innerHTML = jsonData[0]['COUNT(product_quantity)'];
+
+            },
+            error:function(XMLHttpRequest, textStatus, errorThrown){
+                console.log(textStatus);   
+            }
+        });        
+      }else{
+        document.getElementById('cart_value').innerHTML = 'log';
+      }        
+  });
+
+//  $(function() { console.log('bb') });
+
+</script>
     
   </body>
     </html>

@@ -312,6 +312,14 @@ class EStore_Controller extends CI_Controller {
 		
 		echo json_encode($status);
 	}
+
+	public function count_cart_items_ajax()
+	{		
+		$user_uuid 		  = $this->input->post('user_uuid');
+		// echo($user_uuid);
+		$cart_item_count  = $this->EStore_model->countCartItems($user_uuid);
+		echo json_encode($cart_item_count);
+	}
 //============================== End Add to Cart =======================================
 
 // ================================= Shipping_details ======================================

@@ -289,6 +289,20 @@ public function saveCartItemsAfterLogin($cartItems,$userLoginData)
     // die();
 }
 
+public function countCartItems($user_uuid)
+{
+    $query = "Select COUNT(product_quantity) FROM tbl_cart WHERE user_uuid='{$user_uuid}'";
+
+    $q = $this->db->query($query);        
+
+        if ($q->num_rows() > 0) {
+            return $q->result();       
+        }   
+        else {
+            return NULL;
+        }  
+}
+
 public function fetch_product_color($product_uuid,$color_id)
 {
     $query = "Select * FROM tbl_product_colors WHERE product_uuid='{$product_uuid}' AND variation_color_id = '{$color_id}'";
