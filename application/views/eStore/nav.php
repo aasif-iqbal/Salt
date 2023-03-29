@@ -177,7 +177,7 @@
         <div class="dropdown">
             <!--- user profile --->
         <button class="btn btn-outline-dark me-2 border-0" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-        <i class="fa-regular fa-user"></i>
+        <i class="fa-regular fa-user"></i>&nbsp;&nbsp;Profile
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
             <li><h6 class="dropdown-header text-dark">
@@ -194,7 +194,7 @@
         </ul>
         </div>
         <!-- wishlist -->
-        <button class="btn btn-outline-dark me-2 border-0" type="submit"><i class="fa-regular fa-heart"></i></button>
+        <!-- <button class="btn btn-outline-dark me-2 border-0" type="submit"><i class="fa-regular fa-heart"></i></button> -->
         
         <!-- shopping bag -->
         <?php $item_quantity = $this->session->userdata('item_quantity');

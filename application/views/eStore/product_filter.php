@@ -454,7 +454,7 @@ function showProduct(pgNum, color_flag, price_flag, discount_flag)
 }
 
 function getProduct(obj){
-  alert(obj)
+  // alert(obj)
 }
 // -------------------------  Cookie setup  -------------------
 

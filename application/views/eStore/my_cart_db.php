@@ -12,6 +12,7 @@
      <!-- </?php print_r($cart_items); ?> -->
 
     <div class="container">
+        <div class="h1 mt-3 mb-3" style='margin-left:42%'>Shopping Bag</div>
         <div class="row">
             <div class="col-8">
                 <?php         

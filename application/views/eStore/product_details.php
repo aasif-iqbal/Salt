@@ -656,13 +656,13 @@ $( ".rateButton" ).click(function() {
 $('#ratingForm').on('submit', function(event){
 	event.preventDefault();
 	var formData = $(this).serialize();
-	alert(formData);
+	// alert(formData);
   $.ajax({
 		type : 'POST',
 		url : '<?= base_url('save-ratings'); ?>',
 		data : formData,
 		success:function(data, status, response){
-			alert(data);
+			// alert(data);
 			$("#ratingForm")[0].reset();
 			window.setTimeout(function(){window.location.reload()},1000)
 		},error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -767,7 +767,7 @@ function changeProductColor(color_id){
 
 
         if(user_uuid =='None' || user_uuid == 'undefined'){
-          alert('user_not_login')
+          // alert('user_not_login')
           
           product_quantity += 1;
           
@@ -835,7 +835,8 @@ function changeProductColor(color_id){
                       discount_percentage:discount_percentage
                     },                
                 success:function(RespondedData) {  
-                    console.log(RespondedData);                                    
+                    console.log(RespondedData);      
+                    location.reload();                              
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) { 
                     console.log(XMLHttpRequest);

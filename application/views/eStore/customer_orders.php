@@ -33,6 +33,10 @@
         <p class="card-text">SIZE :<?= $list['product_size_name']; ?></p>
         <p class="card-text">COLOR :<?= $list['product_color_name']; ?></p>
         <a class="btn btn-outline-danger btn-small" id="cancel_order" href="<?= base_url('order-cancellation'); ?>" role="button">Cancel Order</a>
+        <p>Show only when order is delivered</p>
+        <a class="btn btn-outline-danger btn-small" id="cancel_order" href="<?= base_url('/'); ?>" role="button">Return/Refund Order</a>
+        <p>After 15 days</p>
+        <a class="btn btn-outline-danger btn-small" id="cancel_order" href="<?= base_url('/'); ?>" role="button">Buy Again</a>
         
       </div>
     </div>
